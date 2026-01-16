@@ -1,588 +1,573 @@
-import { motion } from "framer-motion";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+
+type Experience = {
+  period: string;
+  role: string;
+  company: string;
+  companyUrl?: string;
+  summary: string;
+  bullets: string[];
+  tech: string[];
+};
 
 type Project = {
-  title: string;
+  name: string;
   description: string;
-  stack: string[];
+  tech: string[];
   links: { label: string; href: string }[];
+  featured?: boolean;
 };
 
 function cn(...classes: Array<string | false | null | undefined>) {
   return classes.filter(Boolean).join(" ");
 }
 
-function AccentBlob({ className }: { className?: string }) {
-  // Un “blob” SVG léger, utile pour le côté créatif sans images externes
-  return (
-    <svg
-      className={className}
-      viewBox="0 0 600 600"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-    >
-      <defs>
-        <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="rgba(99,102,241,0.55)" />
-          <stop offset="55%" stopColor="rgba(16,185,129,0.45)" />
-          <stop offset="100%" stopColor="rgba(236,72,153,0.35)" />
-        </linearGradient>
-      </defs>
-      <path
-        fill="url(#g)"
-        d="M421.5,332Q401,414,325,469.5Q249,525,165.5,476Q82,427,86.5,336.5Q91,246,155,181.5Q219,117,312.5,101Q406,85,424.5,167.5Q443,250,421.5,332Z"
-      />
-    </svg>
-  );
+function useActiveSection(ids: string[]) {
+  const [active, setActive] = useState(ids[0] ?? "");
+  const observers = useRef<IntersectionObserver | null>(null);
+
+  useEffect(() => {
+    const els = ids
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+
+    if (!els.length) return;
+
+    observers.current?.disconnect();
+    observers.current = new IntersectionObserver(
+      (entries) => {
+        // Choisir la section la plus “visible”
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => (b.intersectionRatio ?? 0) - (a.intersectionRatio ?? 0))[0];
+        if (visible?.target?.id) setActive(visible.target.id);
+      },
+      {
+        root: null,
+        // un peu de marge pour que ça colle au ressenti scroll
+        rootMargin: "-20% 0px -65% 0px",
+        threshold: [0.1, 0.2, 0.35, 0.5],
+      }
+    );
+
+    els.forEach((el) => observers.current?.observe(el));
+    return () => observers.current?.disconnect();
+  }, [ids]);
+
+  return active;
 }
 
-function SectionTitle({
-  eyebrow,
-  title,
-  subtitle,
-}: {
-  eyebrow: string;
-  title: string;
-  subtitle?: string;
-}) {
+function Chip({ children }: { children: string }) {
   return (
-    <div className="mb-8">
-      <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 text-sm text-black/70 shadow-sm">
-        <span className="h-2 w-2 rounded-full bg-black/80" />
-        <span className="font-medium">{eyebrow}</span>
-      </div>
-      <h2 className="mt-3 text-2xl font-semibold tracking-tight text-black sm:text-3xl">
-        {title}
-      </h2>
-      {subtitle && (
-        <p className="mt-2 max-w-2xl text-black/70">{subtitle}</p>
-      )}
-    </div>
-  );
-}
-
-function Badge({ children }: { children: string }) {
-  return (
-    <span className="inline-flex items-center rounded-full border border-black/10 bg-white px-3 py-1 text-sm text-black/80 shadow-sm">
+    <span className="inline-flex items-center rounded-full border border-black/10 bg-white px-3 py-1 text-xs font-medium text-black/70">
       {children}
     </span>
   );
 }
 
-function Card({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
+function ExternalIcon() {
   return (
-    <div
-      className={cn(
-        "rounded-2xl border border-black/10 bg-white/80 shadow-[0_1px_0_rgba(0,0,0,0.03)] backdrop-blur",
-        className
-      )}
-    >
-      {children}
-    </div>
+    <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
+      <path
+        d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"
+        fill="currentColor"
+      />
+    </svg>
   );
 }
 
-function NavLink({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
+function GithubIcon() {
   return (
-    <a
-      href={href}
-      className="text-sm font-medium text-black/70 hover:text-black transition"
-    >
-      {children}
-    </a>
+    <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M12 .5A11.5 11.5 0 0 0 8.36 23c.58.1.79-.25.79-.56v-2.1c-3.22.7-3.9-1.38-3.9-1.38-.53-1.33-1.3-1.69-1.3-1.69-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.26 3.4.96.1-.76.4-1.26.73-1.55-2.57-.29-5.27-1.29-5.27-5.73 0-1.27.45-2.32 1.2-3.14-.12-.3-.52-1.5.12-3.12 0 0 .98-.31 3.2 1.2a11.1 11.1 0 0 1 5.83 0c2.22-1.51 3.2-1.2 3.2-1.2.64 1.62.24 2.82.12 3.12.75.82 1.2 1.87 1.2 3.14 0 4.45-2.7 5.44-5.28 5.73.41.35.78 1.05.78 2.12v3.14c0 .31.21.66.8.56A11.5 11.5 0 0 0 12 .5Z"
+      />
+    </svg>
   );
 }
 
-function PrimaryButton({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
+function LinkedinIcon() {
   return (
-    <a
-      href={href}
-      className="inline-flex items-center justify-center rounded-xl bg-black px-4 py-2 text-sm font-semibold text-white shadow-sm hover:opacity-90 transition"
-    >
-      {children}
-    </a>
+    <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.5 23.5h4V7.5h-4v16ZM8 7.5h3.83v2.19h.05c.53-1 1.83-2.19 3.77-2.19 4.03 0 4.78 2.65 4.78 6.1v9.9h-4v-8.78c0-2.09-.04-4.78-2.91-4.78-2.91 0-3.36 2.28-3.36 4.63v8.93H8V7.5Z"
+      />
+    </svg>
   );
 }
 
-function SecondaryButton({
-  href,
-  children,
-}: {
-  href: string;
-  children: React.ReactNode;
-}) {
+function MailIcon() {
   return (
-    <a
-      href={href}
-      className="inline-flex items-center justify-center rounded-xl border border-black/15 bg-white px-4 py-2 text-sm font-semibold text-black shadow-sm hover:bg-black/5 transition"
-    >
-      {children}
-    </a>
+    <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
+      <path
+        fill="currentColor"
+        d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4.2-8 5.1-8-5.1V6l8 5.1L20 6v2.2Z"
+      />
+    </svg>
   );
 }
 
 export default function App() {
-  const [activeFilter, setActiveFilter] = useState<
-    "Tout" | "Frontend" | "Backend" | "Fullstack"
-  >("Tout");
+  // --- “spotlight” léger, effet créatif sans dark mode
+  const [spot, setSpot] = useState({ x: 0, y: 0, show: false });
 
-  const projects: Project[] = [
+  useEffect(() => {
+    let raf = 0;
+    const onMove = (e: MouseEvent) => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        setSpot({ x: e.clientX, y: e.clientY, show: true });
+      });
+    };
+    const onLeave = () => setSpot((s) => ({ ...s, show: false }));
+    window.addEventListener("mousemove", onMove);
+    window.addEventListener("mouseleave", onLeave);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseleave", onLeave);
+    };
+  }, []);
+
+  const sectionIds = useMemo(() => ["about", "experience", "projects", "contact"], []);
+  const active = useActiveSection(sectionIds);
+
+  // --- Data (remplace tout ça par tes vraies infos)
+  const experiences: Experience[] = [
     {
-      title: "Dashboard d’app (API + Auth)",
-      description:
-        "Un dashboard moderne avec authentification, rôle utilisateur, appels API et gestion d’état propre.",
-      stack: ["React", "TypeScript", "Node.js", "PostgreSQL", "JWT"],
-      links: [
-        { label: "Démo", href: "#" },
-        { label: "Code", href: "#" },
+      period: "2025 — Aujourd’hui",
+      role: "Développeur Fullstack",
+      company: "Ton entreprise / Freelance",
+      companyUrl: "#",
+      summary:
+        "Construction d’apps web de bout en bout : UI, API, DB, auth, déploiement.",
+      bullets: [
+        "Conception de fonctionnalités produit de A à Z avec une approche pragmatique.",
+        "Mise en place d’API, validations, gestion d’erreurs, logs.",
+        "Amélioration des performances et de la maintenabilité (refactor, composants réutilisables).",
       ],
+      tech: ["TypeScript", "React", "Node.js", "PostgreSQL", "Docker"],
     },
     {
-      title: "Mini SaaS (CRUD + Paiement)",
-      description:
-        "CRUD complet, validations, pagination, et base posée pour un modèle SaaS (paiement à venir).",
-      stack: ["React", "Express", "Zod", "Prisma", "PostgreSQL"],
-      links: [
-        { label: "Démo", href: "#" },
-        { label: "Code", href: "#" },
+      period: "2023 — 2025",
+      role: "Développeur Web",
+      company: "Projet / Association / Études",
+      companyUrl: "#",
+      summary:
+        "Projets web variés avec focus sur l’UX, la clarté du code et la livraison.",
+      bullets: [
+        "Intégration responsive, accessibilité, et composants UI réutilisables.",
+        "Connexion à des APIs externes, gestion d’état, formulaires robustes.",
       ],
-    },
-    {
-      title: "Site vitrine ultra-rapide",
-      description:
-        "Landing page performante, responsive, animations subtiles, et accessibilité soignée.",
-      stack: ["React", "Tailwind", "Framer Motion"],
-      links: [
-        { label: "Démo", href: "#" },
-        { label: "Code", href: "#" },
-      ],
+      tech: ["React", "Tailwind", "REST", "Git"],
     },
   ];
 
-  const projectTags = useMemo(() => {
-    // mapping “simple” pour filtrer sans te compliquer
-    return projects.map((p) => {
-      const s = p.stack.join(" ").toLowerCase();
-      if (s.includes("postgres") && (s.includes("node") || s.includes("express")))
-        return "Fullstack";
-      if (s.includes("node") || s.includes("express")) return "Backend";
-      return "Frontend";
-    }) as Array<"Frontend" | "Backend" | "Fullstack">;
-  }, [projects]);
+  const projects: Project[] = [
+    {
+      name: "App Fullstack (Auth + Dashboard)",
+      description:
+        "Dashboard avec authentification, rôles, CRUD, et données en base. Pensé comme un projet “prod-ready”.",
+      tech: ["React", "TypeScript", "Express", "PostgreSQL", "Prisma"],
+      links: [
+        { label: "Démo", href: "#" },
+        { label: "Code", href: "#" },
+      ],
+      featured: true,
+    },
+    {
+      name: "Mini SaaS (CRUD + Billing)",
+      description:
+        "Base SaaS : onboarding, pages produit, validations, structure prête pour paiement et emails.",
+      tech: ["React", "Node.js", "Zod", "PostgreSQL"],
+      links: [
+        { label: "Démo", href: "#" },
+        { label: "Code", href: "#" },
+      ],
+      featured: true,
+    },
+    {
+      name: "Outil Dev (CLI / Script)",
+      description:
+        "Petit outil qui automatise une tâche (formatage, génération, analyse… selon tes usages).",
+      tech: ["Node.js", "TypeScript"],
+      links: [{ label: "Code", href: "#" }],
+    },
+    {
+      name: "UI Kit / Design System Lite",
+      description:
+        "Composants réutilisables + conventions (tokens, variantes, accessibilité).",
+      tech: ["React", "Tailwind"],
+      links: [{ label: "Code", href: "#" }],
+    },
+  ];
 
-  const filteredProjects = projects.filter((_, i) => {
-    if (activeFilter === "Tout") return true;
-    return projectTags[i] === activeFilter;
-  });
+  const socials = [
+    { label: "GitHub", href: "https://github.com/Dewaxe", icon: <GithubIcon /> },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/william-dempure/", icon: <LinkedinIcon /> },
+    { label: "Email", href: "mailto:williamdempure@gmail.com", icon: <MailIcon /> },
+  ];
 
   return (
     <div className="min-h-screen bg-[#fbfbfc] text-black">
-      {/* Background creative: grille + blobs */}
-      <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.06)_1px,transparent_0)] [background-size:22px_22px] opacity-60" />
-        <AccentBlob className="absolute -top-24 -right-32 h-[420px] w-[420px] blur-2xl opacity-60" />
-        <AccentBlob className="absolute -bottom-40 -left-40 h-[520px] w-[520px] blur-2xl opacity-40 rotate-12" />
+      {/* fond : grille légère + spotlight */}
+      <div className="pointer-events-none fixed inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_1px_1px,rgba(0,0,0,0.06)_1px,transparent_0)] [background-size:24px_24px] opacity-50" />
+        <div
+          className="absolute inset-0 transition-opacity duration-300"
+          style={{
+            opacity: spot.show ? 1 : 0,
+            background: `radial-gradient(600px circle at ${spot.x}px ${spot.y}px, rgba(99,102,241,0.12), rgba(16,185,129,0.08), transparent 60%)`,
+          }}
+        />
       </div>
 
-      {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-black/5 bg-white/70 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-3">
-          <a href="#top" className="flex items-center gap-2">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-black text-white font-semibold">
-              WD
-            </span>
-            <div className="leading-tight">
-              <div className="text-sm font-semibold">William Dempuré</div>
-              <div className="text-xs text-black/60">Développeur Fullstack</div>
-            </div>
-          </a>
-
-          <nav className="hidden items-center gap-6 sm:flex">
-            <NavLink href="#projets">Projets</NavLink>
-            <NavLink href="#stack">Stack</NavLink>
-            <NavLink href="#process">Méthode</NavLink>
-            <NavLink href="#contact">Contact</NavLink>
-          </nav>
-
-          <div className="flex items-center gap-2">
-            <a
-              className="hidden sm:inline-flex items-center rounded-xl border border-black/10 bg-white px-3 py-2 text-sm font-semibold text-black/80 shadow-sm hover:bg-black/5 transition"
-              href="#contact"
-            >
-              Travaillons ensemble
-            </a>
-          </div>
-        </div>
-      </header>
-
-      {/* Main */}
-      <main id="top" className="relative mx-auto max-w-6xl px-4">
-        {/* HERO */}
-        <section className="pt-16 sm:pt-20">
-          <div className="grid items-center gap-10 sm:grid-cols-2">
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="inline-flex items-center gap-2 rounded-full border border-black/10 bg-white/70 px-3 py-1 text-sm text-black/70 shadow-sm">
-                <span className="h-2 w-2 rounded-full bg-emerald-500" />
-                Disponible — recherche poste fullstack
+      {/* Layout */}
+      <div className="relative mx-auto max-w-6xl px-4">
+        <div className="grid gap-12 lg:grid-cols-[360px_1fr] lg:gap-16">
+          {/* Sidebar */}
+          <aside className="lg:sticky lg:top-0 lg:h-screen lg:py-20">
+            <div className="pt-10 lg:pt-0">
+              <div className="inline-flex items-center gap-3">
+                <span className="grid h-12 w-12 place-items-center rounded-2xl bg-black text-white font-semibold">
+                  WD
+                </span>
+                <div>
+                  <h1 className="text-2xl font-semibold tracking-tight">
+                    William Dempuré
+                  </h1>
+                  <p className="text-sm font-medium text-black/70">
+                    Développeur Fullstack
+                  </p>
+                </div>
               </div>
 
-              <h1 className="mt-4 text-4xl font-semibold tracking-tight sm:text-5xl">
-                Je crée des apps web{" "}
-                <span className="relative">
-                  solides
-                  <span className="absolute -bottom-2 left-0 h-2 w-full rounded-full bg-emerald-200/80" />
-                </span>{" "}
-                et{" "}
-                <span className="relative">
-                  agréables
-                  <span className="absolute -bottom-2 left-0 h-2 w-full rounded-full bg-indigo-200/80" />
-                </span>{" "}
-                à utiliser.
-              </h1>
-
-              <p className="mt-4 max-w-xl text-black/70">
-                Développeur fullstack orienté produit : UI propre, API robustes,
-                base de données bien modélisée, et livraison rapide.
+              <p className="mt-5 max-w-sm text-sm leading-relaxed text-black/70">
+                Je construis des expériences web soignées, avec des APIs robustes,
+                une base propre, et une obsession pour la clarté.
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-3">
-                <PrimaryButton href="#projets">Voir mes projets</PrimaryButton>
-                <SecondaryButton href="#contact">Me contacter</SecondaryButton>
-                <SecondaryButton href="#stack">Ma stack</SecondaryButton>
+              {/* Nav */}
+              <nav className="mt-10 hidden lg:block">
+                <ul className="space-y-3">
+                  {sectionIds.map((id) => {
+                    const label =
+                      id === "about"
+                        ? "À propos"
+                        : id === "experience"
+                        ? "Expérience"
+                        : id === "projects"
+                        ? "Projets"
+                        : "Contact";
+                    const isActive = active === id;
+                    return (
+                      <li key={id}>
+                        <a
+                          href={`#${id}`}
+                          className={cn(
+                            "group inline-flex items-center gap-3 text-sm font-semibold transition",
+                            isActive ? "text-black" : "text-black/60 hover:text-black"
+                          )}
+                        >
+                          <span
+                            className={cn(
+                              "h-[2px] w-10 rounded-full transition-all",
+                              isActive
+                                ? "bg-black w-14"
+                                : "bg-black/30 group-hover:bg-black/60"
+                            )}
+                          />
+                          {label}
+                        </a>
+                      </li>
+                    );
+                  })}
+                </ul>
+              </nav>
+
+              {/* Socials */}
+              <div className="mt-10 flex items-center gap-3">
+                {socials.map((s) => (
+                  <a
+                    key={s.label}
+                    href={s.href}
+                    aria-label={s.label}
+                    target="_blank"
+                    className="rounded-xl border border-black/10 bg-white p-3 text-black/70 shadow-sm transition hover:bg-black/5 hover:text-black"
+                  >
+                    {s.icon}
+                  </a>
+                ))}
               </div>
 
-              <div className="mt-8 flex flex-wrap gap-2">
-                <Badge>Clean code</Badge>
-                <Badge>Perf & DX</Badge>
-                <Badge>UI soignée</Badge>
-                <Badge>API & DB</Badge>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 14 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
-              className="relative"
-            >
-              <Card className="p-6">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <div className="text-sm text-black/60">En ce moment</div>
-                    <div className="mt-1 text-lg font-semibold">
-                      Je construis des projets “comme en prod”
-                    </div>
-                    <p className="mt-2 text-sm text-black/70">
-                      Auth, validations, logs, tests, CI, déploiement — pour que
-                      le code inspire confiance.
-                    </p>
-                  </div>
-                  <div className="h-10 w-10 rounded-2xl bg-black text-white grid place-items-center font-semibold">
-                    ⚡
-                  </div>
-                </div>
-
-                <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  {[
-                    ["API", "REST/JSON, auth, rôles"],
-                    ["Base", "PostgreSQL, Prisma"],
-                    ["UI", "Composants réutilisables"],
-                    ["Qualité", "Lint, format, tests"],
-                  ].map(([k, v]) => (
-                    <div
-                      key={k}
-                      className="rounded-2xl border border-black/10 bg-white p-4"
-                    >
-                      <div className="text-sm font-semibold">{k}</div>
-                      <div className="mt-1 text-sm text-black/70">{v}</div>
-                    </div>
-                  ))}
-                </div>
-              </Card>
-
-              <div className="absolute -z-10 -bottom-8 -right-6 h-28 w-28 rounded-full bg-emerald-200/70 blur-xl" />
-              <div className="absolute -z-10 -top-10 -left-10 h-40 w-40 rounded-full bg-indigo-200/70 blur-xl" />
-            </motion.div>
-          </div>
-        </section>
-
-        {/* ABOUT */}
-        <section className="mt-16 sm:mt-20" id="about">
-          <SectionTitle
-            eyebrow="À propos"
-            title="Je transforme des besoins en features, proprement."
-            subtitle="Je cherche un poste fullstack. J’aime les produits bien pensés, la qualité, et le pragmatisme."
-          />
-
-          <div className="grid gap-6 sm:grid-cols-3">
-            <Card className="p-6 sm:col-span-2">
-              <p className="text-black/75 leading-relaxed">
-                Je développe des applications web de bout en bout : conception
-                d’UI, logique métier, APIs, base de données et déploiement.
-                <br />
-                <br />
-                Mon objectif : livrer vite, sans sacrifier la maintenabilité.
-                J’accorde beaucoup d’importance à l’expérience utilisateur et à
-                la clarté du code.
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-2">
-                <Badge>Autonome</Badge>
-                <Badge>Curieux</Badge>
-                <Badge>Rigueur</Badge>
-                <Badge>Orientation produit</Badge>
-              </div>
-            </Card>
-
-            <Card className="p-6">
-              <div className="text-sm text-black/60">Raccourcis</div>
-              <div className="mt-3 grid gap-2">
+              <div className="mt-8">
                 <a
-                  className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm font-semibold hover:bg-black/5 transition"
                   href="#contact"
+                  className="inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
                 >
-                  📩 Email
-                </a>
-                <a
-                  className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm font-semibold hover:bg-black/5 transition"
-                  href="#"
-                >
-                  💼 LinkedIn
-                </a>
-                <a
-                  className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm font-semibold hover:bg-black/5 transition"
-                  href="#"
-                >
-                  💻 GitHub
-                </a>
-                <a
-                  className="rounded-xl border border-black/10 bg-white px-4 py-3 text-sm font-semibold hover:bg-black/5 transition"
-                  href="#"
-                >
-                  📄 CV (PDF)
+                  Me contacter <ExternalIcon />
                 </a>
               </div>
-            </Card>
-          </div>
-        </section>
+            </div>
+          </aside>
 
-        {/* STACK */}
-        <section className="mt-16 sm:mt-20" id="stack">
-          <SectionTitle
-            eyebrow="Stack"
-            title="Simple, moderne, et orientée production"
-            subtitle="Une stack facile à déployer en statique, et évolutive si tu veux ajouter un backend plus tard."
-          />
-
-          <div className="grid gap-6 sm:grid-cols-3">
-            {[
-              {
-                title: "Frontend",
-                items: ["React", "TypeScript", "Tailwind", "Framer Motion"],
-              },
-              {
-                title: "Backend",
-                items: ["Node.js", "Express", "REST", "JWT", "Zod"],
-              },
-              {
-                title: "Data & outils",
-                items: ["PostgreSQL", "Prisma", "Git", "Docker", "CI (plus tard)"],
-              },
-            ].map((col) => (
-              <Card key={col.title} className="p-6">
-                <div className="text-sm text-black/60">{col.title}</div>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {col.items.map((i) => (
-                    <Badge key={i}>{i}</Badge>
+          {/* Content */}
+          <main className="pb-20 lg:py-20">
+            {/* Mobile nav (simple) */}
+            <div className="sticky top-0 z-40 -mx-4 border-b border-black/5 bg-white/70 px-4 py-3 backdrop-blur lg:hidden">
+              <div className="flex items-center justify-between">
+                <div className="text-sm font-semibold">William Dempuré</div>
+                <div className="flex items-center gap-2">
+                  {sectionIds.map((id) => (
+                    <a
+                      key={id}
+                      href={`#${id}`}
+                      className={cn(
+                        "rounded-full px-3 py-1 text-xs font-semibold border shadow-sm transition",
+                        active === id
+                          ? "bg-black text-white border-black"
+                          : "bg-white text-black/70 border-black/10 hover:bg-black/5"
+                      )}
+                    >
+                      {id === "about"
+                        ? "À propos"
+                        : id === "experience"
+                        ? "Exp."
+                        : id === "projects"
+                        ? "Projets"
+                        : "Contact"}
+                    </a>
                   ))}
                 </div>
-              </Card>
-            ))}
-          </div>
-        </section>
+              </div>
+            </div>
 
-        {/* PROJECTS */}
-        <section className="mt-16 sm:mt-20" id="projets">
-          <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-            <SectionTitle
-              eyebrow="Projets"
-              title="Quelques projets qui montrent mon niveau"
-              subtitle="2–4 projets max. Chacun doit prouver une compétence."
-            />
+            {/* ABOUT */}
+            <section id="about" className="scroll-mt-24 pt-10 lg:pt-0">
+              <h2 className="text-sm font-bold tracking-[0.2em] text-black/50">
+                À PROPOS
+              </h2>
+              <div className="mt-4 space-y-4 text-sm leading-relaxed text-black/75">
+                <p>
+                  Je suis développeur fullstack avec un goût marqué pour les interfaces
+                  propres, l’architecture simple, et le code lisible.
+                </p>
+                <p>
+                  J’aime travailler “comme en prod” : validations, erreurs, logs, structure
+                  claire, et une expérience utilisateur qui donne confiance.
+                </p>
+                <p>
+                  Je cherche un poste fullstack où je peux livrer des features utiles et
+                  progresser avec une équipe exigeante.
+                </p>
+              </div>
+            </section>
 
-            <div className="flex flex-wrap gap-2">
-              {(["Tout", "Frontend", "Backend", "Fullstack"] as const).map(
-                (f) => (
-                  <button
-                    key={f}
-                    onClick={() => setActiveFilter(f)}
+            {/* EXPERIENCE */}
+            <section id="experience" className="scroll-mt-24 mt-14">
+              <h2 className="text-sm font-bold tracking-[0.2em] text-black/50">
+                EXPÉRIENCE
+              </h2>
+
+              <div className="mt-6 space-y-4">
+                {experiences.map((e) => (
+                  <a
+                    key={`${e.period}-${e.company}`}
+                    href={e.companyUrl ?? "#"}
                     className={cn(
-                      "rounded-full px-4 py-2 text-sm font-semibold border shadow-sm transition",
-                      activeFilter === f
-                        ? "bg-black text-white border-black"
-                        : "bg-white border-black/10 text-black/70 hover:bg-black/5"
+                      "group block rounded-2xl border border-black/10 bg-white/80 p-6 shadow-sm transition",
+                      "hover:-translate-y-[1px] hover:border-black/20 hover:bg-white"
                     )}
                   >
-                    {f}
-                  </button>
-                )
-              )}
-            </div>
-          </div>
+                    <div className="grid gap-3 sm:grid-cols-[140px_1fr]">
+                      <div className="text-xs font-semibold text-black/50">
+                        {e.period}
+                      </div>
+                      <div>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <div className="text-base font-semibold">
+                            {e.role} ·{" "}
+                            <span className="text-black/70">{e.company}</span>
+                          </div>
+                          <span className="text-black/40 transition group-hover:text-black/70">
+                            <ExternalIcon />
+                          </span>
+                        </div>
+                        <p className="mt-2 text-sm text-black/70">{e.summary}</p>
 
-          <div className="mt-6 grid gap-6 sm:grid-cols-2">
-            {filteredProjects.map((p) => (
-              <Card key={p.title} className="p-6">
-                {/* faux “mockup” sans image */}
-                <div className="rounded-2xl border border-black/10 bg-gradient-to-br from-white to-black/5 p-4">
-                  <div className="flex items-center gap-2">
-                    <span className="h-3 w-3 rounded-full bg-red-300" />
-                    <span className="h-3 w-3 rounded-full bg-yellow-300" />
-                    <span className="h-3 w-3 rounded-full bg-green-300" />
-                    <div className="ml-auto text-xs text-black/50">
-                      demo.app
+                        <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-black/70">
+                          {e.bullets.map((b) => (
+                            <li key={b}>{b}</li>
+                          ))}
+                        </ul>
+
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {e.tech.map((t) => (
+                            <Chip key={t}>{t}</Chip>
+                          ))}
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                  <div className="mt-4 h-24 rounded-xl bg-white/70 border border-black/10" />
-                  <div className="mt-3 grid grid-cols-3 gap-2">
-                    <div className="h-10 rounded-xl bg-white/70 border border-black/10" />
-                    <div className="h-10 rounded-xl bg-white/70 border border-black/10" />
-                    <div className="h-10 rounded-xl bg-white/70 border border-black/10" />
-                  </div>
-                </div>
+                  </a>
+                ))}
+              </div>
 
-                <div className="mt-5">
-                  <div className="text-lg font-semibold">{p.title}</div>
-                  <p className="mt-2 text-sm text-black/70">{p.description}</p>
-
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {p.stack.map((s) => (
-                      <Badge key={s}>{s}</Badge>
-                    ))}
-                  </div>
-
-                  <div className="mt-5 flex flex-wrap gap-3">
-                    {p.links.map((l) => (
-                      <a
-                        key={l.label}
-                        href={l.href}
-                        className="inline-flex items-center rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-black/5 transition"
-                      >
-                        {l.label}
-                      </a>
-                    ))}
-                  </div>
-                </div>
-              </Card>
-            ))}
-          </div>
-
-          <div className="mt-6 text-sm text-black/60">
-            💡 Remplace les liens “#” par tes vrais liens GitHub / démo quand tu
-            les as.
-          </div>
-        </section>
-
-        {/* PROCESS */}
-        <section className="mt-16 sm:mt-20" id="process">
-          <SectionTitle
-            eyebrow="Méthode"
-            title="Je livre vite, mais je livre propre"
-            subtitle="Une approche simple, compréhensible par un recruteur… et utile en équipe."
-          />
-
-          <div className="grid gap-6 sm:grid-cols-4">
-            {[
-              ["🧩", "Comprendre", "Objectif, contraintes, utilisateurs"],
-              ["🧱", "Construire", "Architecture, UI, API, data"],
-              ["🧪", "Fiabiliser", "Tests, validations, edge cases"],
-              ["🚀", "Livrer", "Déploiement, monitoring, itération"],
-            ].map(([icon, t, d]) => (
-              <Card key={t} className="p-6">
-                <div className="text-2xl">{icon}</div>
-                <div className="mt-2 font-semibold">{t}</div>
-                <div className="mt-1 text-sm text-black/70">{d}</div>
-              </Card>
-            ))}
-          </div>
-        </section>
-
-        {/* CONTACT */}
-        <section className="mt-16 sm:mt-20 pb-20" id="contact">
-          <SectionTitle
-            eyebrow="Contact"
-            title="On en parle ?"
-            subtitle="Un message suffit. Je réponds rapidement."
-          />
-
-          <Card className="p-6 sm:p-8">
-            <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-              <div>
-                <div className="text-sm text-black/60">Email</div>
+              <div className="mt-6">
                 <a
-                  className="mt-1 inline-block text-xl font-semibold tracking-tight hover:underline"
-                  href="mailto:williamdempure@gmail.com"
+                  href="#"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-black/70 hover:text-black"
                 >
-                  williamdempure@gmail.com
+                  Voir le CV complet <ExternalIcon />
                 </a>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  <a
-                    className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-black/5 transition"
-                    href="https://www.linkedin.com/in/william-dempure/"
-                  >
-                    LinkedIn
-                  </a>
-                  <a
-                    className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-black/5 transition"
-                    href="https://github.com/Dewaxe"
-                  >
-                    GitHub
-                  </a>
-                  <a
-                    className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-semibold shadow-sm hover:bg-black/5 transition"
-                    href="#"
-                  >
-                    CV PDF
-                  </a>
+              </div>
+            </section>
+
+            {/* PROJECTS */}
+            <section id="projects" className="scroll-mt-24 mt-14">
+              <h2 className="text-sm font-bold tracking-[0.2em] text-black/50">
+                PROJETS
+              </h2>
+
+              {/* Featured */}
+              <div className="mt-6 space-y-4">
+                {projects
+                  .filter((p) => p.featured)
+                  .map((p) => (
+                    <div
+                      key={p.name}
+                      className="group rounded-2xl border border-black/10 bg-white/80 p-6 shadow-sm transition hover:-translate-y-[1px] hover:border-black/20 hover:bg-white"
+                    >
+                      <div className="grid gap-5 md:grid-cols-[1fr_220px]">
+                        <div>
+                          <div className="flex items-center justify-between gap-4">
+                            <h3 className="text-base font-semibold">{p.name}</h3>
+                            <div className="flex items-center gap-2">
+                              {p.links.map((l) => (
+                                <a
+                                  key={l.label}
+                                  href={l.href}
+                                  className="inline-flex items-center gap-2 rounded-xl border border-black/10 bg-white px-3 py-2 text-xs font-semibold text-black/70 shadow-sm transition hover:bg-black/5 hover:text-black"
+                                >
+                                  {l.label} <ExternalIcon />
+                                </a>
+                              ))}
+                            </div>
+                          </div>
+
+                          <p className="mt-2 text-sm text-black/70">{p.description}</p>
+
+                          <div className="mt-4 flex flex-wrap gap-2">
+                            {p.tech.map((t) => (
+                              <Chip key={t}>{t}</Chip>
+                            ))}
+                          </div>
+                        </div>
+
+                        {/* Visuel placeholder type “screenshot card” */}
+                        <div className="rounded-2xl border border-black/10 bg-gradient-to-br from-white to-black/5 p-4">
+                          <div className="flex items-center gap-2">
+                            <span className="h-3 w-3 rounded-full bg-red-300" />
+                            <span className="h-3 w-3 rounded-full bg-yellow-300" />
+                            <span className="h-3 w-3 rounded-full bg-green-300" />
+                            <div className="ml-auto text-[10px] font-semibold text-black/40">
+                              screenshot
+                            </div>
+                          </div>
+                          <div className="mt-4 h-24 rounded-xl border border-black/10 bg-white/70" />
+                          <div className="mt-3 grid grid-cols-3 gap-2">
+                            <div className="h-10 rounded-xl border border-black/10 bg-white/70" />
+                            <div className="h-10 rounded-xl border border-black/10 bg-white/70" />
+                            <div className="h-10 rounded-xl border border-black/10 bg-white/70" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+              </div>
+
+              {/* Other projects */}
+              <div className="mt-10">
+                <h3 className="text-sm font-semibold text-black/70">
+                  Autres projets notables
+                </h3>
+                <div className="mt-4 divide-y divide-black/10 overflow-hidden rounded-2xl border border-black/10 bg-white/80">
+                  {projects
+                    .filter((p) => !p.featured)
+                    .map((p) => (
+                      <div
+                        key={p.name}
+                        className="p-5 transition hover:bg-black/[0.02]"
+                      >
+                        <div className="flex flex-wrap items-center justify-between gap-3">
+                          <div className="font-semibold">{p.name}</div>
+                          <div className="flex items-center gap-2">
+                            {p.links.map((l) => (
+                              <a
+                                key={l.label}
+                                href={l.href}
+                                className="inline-flex items-center gap-2 text-xs font-semibold text-black/60 hover:text-black"
+                              >
+                                {l.label} <ExternalIcon />
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                        <p className="mt-2 text-sm text-black/70">{p.description}</p>
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {p.tech.map((t) => (
+                            <Chip key={t}>{t}</Chip>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                 </div>
               </div>
+            </section>
 
-              <div className="flex gap-3">
-                <PrimaryButton href="mailto:williamdempure@gmail.com">
-                  Envoyer un email
-                </PrimaryButton>
-                <SecondaryButton href="#top">Retour en haut</SecondaryButton>
+            {/* CONTACT */}
+            <section id="contact" className="scroll-mt-24 mt-14">
+              <h2 className="text-sm font-bold tracking-[0.2em] text-black/50">
+                CONTACT
+              </h2>
+
+              <div className="mt-6 rounded-2xl border border-black/10 bg-white/80 p-6 shadow-sm">
+                <p className="text-sm text-black/70">
+                  Si tu as un poste fullstack ouvert ou un projet intéressant, je suis partant.
+                </p>
+
+                <div className="mt-4 flex flex-wrap gap-3">
+                  <a
+                    href="mailto:williamdempure@gmail.com"
+                    className="inline-flex items-center gap-2 rounded-xl bg-black px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
+                  >
+                    Envoyer un email <ExternalIcon />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/william-dempure/"
+                    target="_blank"
+                    className="inline-flex items-center gap-2 rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-semibold text-black/70 shadow-sm transition hover:bg-black/5 hover:text-black"
+                  >
+                    LinkedIn <ExternalIcon />
+                  </a>
+                  <a
+                    href="https://github.com/Dewaxe"
+                    target="_blank"
+                    className="inline-flex items-center gap-2 rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-semibold text-black/70 shadow-sm transition hover:bg-black/5 hover:text-black"
+                  >
+                    GitHub <ExternalIcon />
+                  </a>
+                </div>
+
+                <div className="mt-6 text-xs text-black/50">
+                  © {new Date().getFullYear()} William Dempuré
+                </div>
               </div>
-            </div>
-          </Card>
-
-          <div className="mt-6 text-xs text-black/50">
-            © {new Date().getFullYear()} William Dempuré — Fait avec React + Vite.
-          </div>
-        </section>
-      </main>
+            </section>
+          </main>
+        </div>
+      </div>
     </div>
   );
 }
