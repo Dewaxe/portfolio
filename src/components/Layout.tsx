@@ -10,7 +10,6 @@ import { MouseHaloBackground } from "./MouseHaloBackground";
 export function Layout({
     theme,
     onToggleTheme,
-    initials,
     name,
     title,
     blurb,
@@ -19,7 +18,6 @@ export function Layout({
 }: {
     theme: Theme;
     onToggleTheme: () => void;
-    initials: string;
     name: string;
     title: string;
     blurb: string;
@@ -41,7 +39,6 @@ export function Layout({
             <div className="relative mx-auto max-w-6xl px-4">
                 <div className="grid gap-12 lg:grid-cols-[360px_1fr] lg:gap-16">
                     <Sidebar
-                        initials={initials}
                         name={name}
                         title={title}
                         blurb={blurb}

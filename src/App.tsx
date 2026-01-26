@@ -28,7 +28,6 @@ export default function App() {
                     <Layout
                         theme={theme}
                         onToggleTheme={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
-                        initials={profile.initials}
                         name={profile.name}
                         title={profile.title}
                         blurb={profile.blurb}

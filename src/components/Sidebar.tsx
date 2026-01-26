@@ -12,7 +12,6 @@ function renderSocialIcon(key: "github" | "linkedin" | "email") {
 }
 
 export function Sidebar({
-    initials,
     name,
     title,
     blurb,
@@ -20,7 +19,6 @@ export function Sidebar({
     sectionIds,
     activeSectionId,
 }: {
-    initials: string;
     name: string;
     title: string;
     blurb: string;
@@ -47,9 +45,6 @@ export function Sidebar({
             <div className="pt-10 lg:pt-0">
                 {/* Header */}
                 <div className="inline-flex items-center gap-3">
-                    {/* <span className="grid h-12 w-12 place-items-center rounded-2xl bg-sky-600 text-white font-semibold">
-                        {initials}
-                    </span> */}
                     <img
                         src="/profile.jpg"
                         alt={`Photo de profil - ${name}`}
