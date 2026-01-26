@@ -22,16 +22,18 @@ export function HomePage({
                 <SectionHeading title="À PROPOS" />
                 <div className="mt-6 space-y-4 text-sm leading-relaxed text-[rgba(var(--muted),0.95)]">
                     <p>
-                        Je suis développeur fullstack avec un goût marqué pour les interfaces propres,
-                        l’architecture simple, et le code lisible.
+                        Je suis développeur fullstack, et j’aime autant travailler sur l’interface que sur le backend :
+                        construire une feature, la brancher à une API, la stocker proprement, puis la déployer.
                     </p>
+
                     <p>
-                        J’aime travailler “comme en prod” : validations, erreurs, logs, structure claire,
-                        et une expérience utilisateur qui donne confiance.
+                        J’ai eu l’occasion de bosser sur des sujets très concrets : outils internes, automatisation,
+                        dashboards, et aussi des projets perso auto-hébergés (stack React/TypeScript + backend).
                     </p>
+
                     <p>
-                        Je cherche un poste fullstack où je peux livrer des features utiles et progresser
-                        avec une équipe exigeante.
+                        Je cherche aujourd’hui un poste en CDI où je peux continuer à progresser dans une équipe,
+                        livrer des fonctionnalités utiles, et être impliqué dans le produit au quotidien.
                     </p>
                 </div>
             </section>
@@ -102,7 +104,7 @@ export function HomePage({
 
                 <div className="mt-8">
                     <a
-                        href="#"
+                        href="/cv-william-dempure.pdf"
                         target="_blank"
                         rel="noreferrer"
                         className="inline-flex items-center gap-2 text-sm font-semibold text-[rgba(var(--muted),0.95)] hover:underline"

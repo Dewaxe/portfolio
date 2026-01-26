@@ -29,7 +29,7 @@ export const profile = {
     name: "William Dempuré",
     title: "Développeur Fullstack | React/TypeScript | Python",
     blurb:
-        "Développeur fullstack en recherche d’un poste en CDI dans le développement web. Expérience sur des projets variés : frontend & backend, automatisation de processus, visualisation de données et auto-hébergement. Autonome, curieux et flexible, j’apprécie le travail en équipe et souhaite continuer à développer mes compétences sur des projets impactants.",
+        "Je développe des applications web full-stack, du front à l’API, jusqu’au déploiement.",
     email: "williamdempure@gmail.com",
 };
 

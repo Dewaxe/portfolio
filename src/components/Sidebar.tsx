@@ -47,9 +47,19 @@ export function Sidebar({
             <div className="pt-10 lg:pt-0">
                 {/* Header */}
                 <div className="inline-flex items-center gap-3">
-                    <span className="grid h-12 w-12 place-items-center rounded-2xl bg-sky-600 text-white font-semibold">
+                    {/* <span className="grid h-12 w-12 place-items-center rounded-2xl bg-sky-600 text-white font-semibold">
                         {initials}
-                    </span>
+                    </span> */}
+                    <img
+                        src="/profile.jpg"
+                        alt={`Photo de profil - ${name}`}
+                        className={cn(
+                            "h-32 w-32 min-h-20 min-w-20",
+                            "rounded-full object-cover",
+                            "shrink-0",
+                            "ring-2 ring-slate-200 dark:ring-slate-700"
+                        )}
+                    />
                     <div>
                         <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-200">
                             {name}
@@ -60,9 +70,24 @@ export function Sidebar({
                     </div>
                 </div>
 
-                <p className="mt-5 max-w-sm text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-                    {blurb}
-                </p>
+                <div className="mt-5 max-w-sm space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
+  <p>{blurb}</p>
+  <p>
+    En recherche d’un CDI.
+    {" "}
+    <a
+      href="/cv-william-dempure.pdf"
+      target="_blank"
+      rel="noreferrer"
+      className="font-semibold text-slate-900 underline decoration-slate-300 underline-offset-4
+                 hover:decoration-sky-500 dark:text-slate-200 dark:decoration-slate-700"
+    >
+      Voir mon CV
+    </a>
+    .
+  </p>
+</div>
+
 
                 {/* Nav (Brittany-like: barre + texte glissent vers la droite) */}
                 <nav className="mt-10 hidden lg:block">
