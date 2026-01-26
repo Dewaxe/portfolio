@@ -3,11 +3,11 @@ import { Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { HomePage } from "./pages/HomePage";
 import { ProjectsPage } from "./pages/ProjectsPage";
-import { applyTheme, getInitialTheme, saveTheme, type Theme } from "./theme/theme";
+import { applyTheme, getInitialTheme, saveTheme } from "./theme/theme";
 import { experiences, profile, projects, socials } from "./data/profile";
 
 export default function App() {
-    const [theme, setTheme] = useState<Theme>("light");
+    const [theme, setTheme] = useState(() => getInitialTheme());
 
     useEffect(() => {
         const t = getInitialTheme();
