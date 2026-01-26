@@ -24,7 +24,7 @@ export function Layout({
     socials: Social[];
     children: React.ReactNode;
 }) {
-    const sectionIds = useMemo(() => ["about", "experience", "projects", "contact"], []);
+    const sectionIds = useMemo(() => ["about", "experience", "projects"], []);
     const active = useActiveSection(sectionIds);
 
     return (

@@ -24,7 +24,7 @@ export function ProjectsPage({ projects, theme, onToggleTheme }: { projects: Pro
                     <div>
                         <h1 className="text-2xl font-semibold tracking-tight">Tous les projets</h1>
                         <p className="mt-2 text-sm text-[rgba(var(--muted),0.95)]">
-                            Liste complète (ajoute autant de projets que tu veux).
+                            Liste complète.
                         </p>
                     </div>
 

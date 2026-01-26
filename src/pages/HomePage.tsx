@@ -9,11 +9,9 @@ import { cn } from "../utils/cn";
 export function HomePage({
     experiences,
     projects,
-    email,
 }: {
     experiences: Experience[];
     projects: Project[];
-    email: string;
 }) {
     return (
         <>
@@ -28,7 +26,7 @@ export function HomePage({
 
                     <p>
                         J’ai eu l’occasion de bosser sur des sujets très concrets : outils internes, automatisation,
-                        dashboards, et aussi des projets perso auto-hébergés (stack React/TypeScript + backend).
+                        dashboards, et aussi des projets perso auto-hébergés (stack React/TypeScript principalement).
                     </p>
 
                     <p>
@@ -38,7 +36,7 @@ export function HomePage({
                 </div>
             </section>
 
-            {/* EXPERIENCE (espacement augmenté) */}
+            {/* EXPERIENCE */}
             <section id="experience" className="scroll-mt-28 mt-24">
                 <SectionHeading title="EXPÉRIENCE" />
 
@@ -100,17 +98,6 @@ export function HomePage({
                             </Card>
                         </a>
                     ))}
-                </div>
-
-                <div className="mt-8">
-                    <a
-                        href="/cv-william-dempure.pdf"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-[rgba(var(--muted),0.95)] hover:underline"
-                    >
-                        Voir le CV complet <ExternalIcon />
-                    </a>
                 </div>
             </section>
 
@@ -177,40 +164,16 @@ export function HomePage({
                         ))}
                 </div>
 
-                {/* IMPORTANT: bouton "Voir tous les projets" en bas de la section */}
-                <div className="mt-10">
+                {/* Lien vers la page des projets */}
+                <div className="mt-6 flex justify-end">
                     <Link
                         to="/projects"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-[rgba(var(--muted),0.95)] hover:underline"
+                        className="group inline-flex items-center gap-2 text-sm font-medium
+                                text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
                     >
-                        Voir tous les projets <ExternalIcon />
+                        Voir tous les projets
+                        <span className="transition-transform group-hover:translate-x-1">→</span>
                     </Link>
-                </div>
-            </section>
-
-            {/* CONTACT (remis comme avant) */}
-            <section id="contact" className="scroll-mt-28 mt-24">
-                <SectionHeading title="CONTACT" />
-
-                <div className="mt-8">
-                    <Card className="group p-6">
-                        <p className="text-sm text-[rgba(var(--muted),0.95)]">
-                            Si tu as un poste fullstack ouvert ou un projet intéressant, je suis partant.
-                        </p>
-
-                        <div className="mt-4 flex flex-wrap gap-3">
-                            <a
-                                href={`mailto:${email}`}
-                                className="inline-flex items-center gap-2 rounded-xl bg-[rgb(var(--accent))] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
-                            >
-                                Envoyer un email <ExternalIcon />
-                            </a>
-                        </div>
-
-                        <div className="mt-6 text-xs text-[rgba(var(--muted-2),0.95)]">
-                            Réponse rapide, même pour un premier échange 🙂
-                        </div>
-                    </Card>
                 </div>
             </section>
         </>

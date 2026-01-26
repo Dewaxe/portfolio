@@ -36,7 +36,6 @@ export default function App() {
                         <HomePage
                             experiences={experiences}
                             projects={projects}
-                            email={profile.email}
                         />
                     </Layout>
                 }

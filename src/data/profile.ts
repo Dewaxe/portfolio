@@ -51,12 +51,13 @@ export const experiences: Experience[] = [
             "Analyse de conformité et contrôle documentaire selon un cahier des charges.",
             "Réalisation d’un dashboard Power BI pour une exploitation agricole (KPIs & visualisations).",
         ],
-        tech: ["n8n", "Power BI", "PDF processing", "Data visualisation"],
+        tech: ["n8n", "Power BI", "Data visualisation"],
     },
     {
         period: "2024",
         role: "Stagiaire Développeur logiciel (6 mois)",
         company: "Safran",
+        companyUrl: "https://www.safran-group.com/fr",
         summary:
             "Développement et livraison de fonctionnalités sur des applications web (et web/mobile), avec une stack React/TypeScript et Python/FastAPI, et un focus sur le déploiement.",
         bullets: [
@@ -70,6 +71,7 @@ export const experiences: Experience[] = [
         period: "2017 — 2020",
         role: "Chef d’équipe",
         company: "McDonald’s",
+        companyUrl: "https://www.mcdonalds.fr/",
         summary:
             "Management opérationnel et coordination d’équipe en environnement exigeant.",
         bullets: [
@@ -82,6 +84,7 @@ export const experiences: Experience[] = [
         period: "2016",
         role: "Technicien Qualité (CDD)",
         company: "MSC SCANNING",
+        companyUrl: "https://www.mscscanning-technique.fr/",
         summary:
             "Contrôle qualité et respect de procédures pour garantir la conformité.",
         bullets: [

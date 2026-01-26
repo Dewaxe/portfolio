@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import type { Social } from "../data/profile";
 import { cn } from "../utils/cn";
 import { Card } from "./Card";
@@ -34,15 +34,14 @@ export function Sidebar({
                     ? "À propos"
                     : id === "experience"
                     ? "Expérience"
-                    : id === "projects"
-                    ? "Projets"
-                    : "Contact",
+                    : "Projets",
         }));
     }, [sectionIds]);
 
     return (
         <aside className="lg:sticky lg:top-0 lg:h-screen lg:py-20">
             <div className="pt-10 lg:pt-0">
+                
                 {/* Header */}
                 <div className="inline-flex items-center gap-3">
                     <img
@@ -66,25 +65,25 @@ export function Sidebar({
                 </div>
 
                 <div className="mt-5 max-w-sm space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
-  <p>{blurb}</p>
-  <p>
-    En recherche d’un CDI.
-    {" "}
-    <a
-      href="/cv-william-dempure.pdf"
-      target="_blank"
-      rel="noreferrer"
-      className="font-semibold text-slate-900 underline decoration-slate-300 underline-offset-4
-                 hover:decoration-sky-500 dark:text-slate-200 dark:decoration-slate-700"
-    >
-      Voir mon CV
-    </a>
-    .
-  </p>
-</div>
+                    <p>{blurb}</p>
+                    <p>
+                        En recherche d’un CDI.
+                        {" "}
+                        <a
+                            href="/cv-william-dempure.pdf"
+                            target="_blank"
+                            rel="noreferrer"
+                            className="font-semibold text-slate-900 underline decoration-slate-300 underline-offset-4
+                                        hover:decoration-sky-500 dark:text-slate-200"
+                        >
+                            Voir le CV
+                        </a>
+                        .
+                    </p>
+                </div>
 
 
-                {/* Nav (Brittany-like: barre + texte glissent vers la droite) */}
+                {/* Nav */}
                 <nav className="mt-10 hidden lg:block">
                     <ul className="space-y-3">
                         {labels.map((x) => {
@@ -102,7 +101,7 @@ export function Sidebar({
                                                 : "text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
                                         )}
                                     >
-                                        {/* Barre (toujours même épaisseur) */}
+                                        {/* Barre */}
                                         <span
                                             className={cn(
                                                 "block h-[2px] min-h-[2px] w-10 shrink-0 rounded-full",
@@ -113,7 +112,7 @@ export function Sidebar({
                                             )}
                                         />
 
-                                        {/* Texte (décalage léger comme Brittany) */}
+                                        {/* Texte */}
                                         <span
                                             className={cn(
                                                 "transition-transform duration-200 ease-out",
@@ -127,15 +126,9 @@ export function Sidebar({
                             );
                         })}
                     </ul>
-
-                    <div className="mt-10 text-xs text-slate-500 dark:text-slate-500">
-                        <Link to="/projects" className="hover:underline">
-                            Aller à la page projets →
-                        </Link>
-                    </div>
                 </nav>
 
-                {/* Socials (même “card hover” que le reste) */}
+                {/* Socials */}
                 <div className="mt-10 flex flex-wrap items-center gap-3">
                     {socials.map((s) => (
                         <a
