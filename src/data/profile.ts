@@ -25,83 +25,88 @@ export type Social = {
 };
 
 export const profile = {
-    initials: "AB",
-    name: "Ton Prénom Nom",
-    title: "Développeur Fullstack",
+    initials: "WD",
+    name: "William Dempuré",
+    title: "Développeur Fullstack | React/TypeScript | Python",
     blurb:
-        "Je construis des expériences web soignées, avec des APIs robustes, une base propre, et une attention aux détails produit.",
-    email: "ton.email@example.com",
+        "Développeur fullstack en recherche d’un poste en CDI dans le développement web. Expérience sur des projets variés : frontend & backend, automatisation de processus, visualisation de données et auto-hébergement. Autonome, curieux et flexible, j’apprécie le travail en équipe et souhaite continuer à développer mes compétences sur des projets impactants.",
+    email: "williamdempure@gmail.com",
 };
 
 export const socials: Social[] = [
-    { label: "GitHub", href: "#", iconKey: "github" },
-    { label: "LinkedIn", href: "#", iconKey: "linkedin" },
-    { label: "Email", href: "mailto:ton.email@example.com", iconKey: "email" },
+    { label: "GitHub", href: "https://github.com/Dewaxe", iconKey: "github" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/william-dempure/", iconKey: "linkedin" },
+    { label: "Email", href: "mailto:williamdempure@gmail.com", iconKey: "email" },
 ];
 
 export const experiences: Experience[] = [
     {
         period: "2025 — Aujourd’hui",
         role: "Développeur Fullstack",
-        company: "Ton entreprise / Freelance",
-        companyUrl: "#",
-        summary: "Construction d’apps web de bout en bout : UI, API, DB, auth, déploiement.",
+        company: "Auto-entrepreneur",
+        summary:
+            "Missions orientées automatisation et data : extraction/contrôle documentaire et visualisation d’indicateurs pour faciliter la prise de décision.",
         bullets: [
-            "Conception de fonctionnalités produit de A à Z avec une approche pragmatique.",
-            "Mise en place d’API, validations, gestion d’erreurs, logs.",
-            "Amélioration de la maintenabilité (refactor, composants réutilisables).",
+            "Automatisation avec n8n pour l’extraction d’informations depuis des fichiers PDF.",
+            "Analyse de conformité et contrôle documentaire selon un cahier des charges.",
+            "Réalisation d’un dashboard Power BI pour une exploitation agricole (KPIs & visualisations).",
         ],
-        tech: ["TypeScript", "React", "Node.js", "PostgreSQL", "Docker"],
+        tech: ["n8n", "Power BI", "PDF processing", "Data visualisation"],
     },
     {
-        period: "2023 — 2025",
-        role: "Développeur Web",
-        company: "Projet / Association / Études",
-        companyUrl: "#",
-        summary: "Projets web variés avec focus sur l’UX, la clarté du code et la livraison.",
+        period: "2024",
+        role: "Stagiaire Développeur logiciel (6 mois)",
+        company: "Safran",
+        summary:
+            "Développement et livraison de fonctionnalités sur des applications web (et web/mobile), avec une stack React/TypeScript et Python/FastAPI, et un focus sur le déploiement.",
         bullets: [
-            "Intégration responsive, accessibilité, et composants UI réutilisables.",
-            "Connexion à des APIs, gestion d’état, formulaires robustes.",
+            "Développement frontend en React/TypeScript avec Material UI pour une application destinée aux RRH du groupe.",
+            "Conteneurisation Docker et déploiement sur OpenShift.",
+            "Développement d’une application de podcasts (web & mobile) en Python/FastAPI, React/TypeScript et SQL.",
         ],
-        tech: ["React", "Tailwind", "REST", "Git"],
+        tech: ["React", "TypeScript", "Material UI", "Python", "FastAPI", "SQL", "Docker", "OpenShift", "SQLAlchemy"],
+    },
+    {
+        period: "2017 — 2020",
+        role: "Chef d’équipe",
+        company: "McDonald’s",
+        summary:
+            "Management opérationnel et coordination d’équipe en environnement exigeant.",
+        bullets: [
+            "Organisation des opérations quotidiennes et coordination d’équipe.",
+            "Gestion des priorités et maintien de la qualité de service sous pression.",
+        ],
+        tech: ["Coordination", "Organisation", "Gestion du temps"],
+    },
+    {
+        period: "2016",
+        role: "Technicien Qualité (CDD)",
+        company: "MSC SCANNING",
+        summary:
+            "Contrôle qualité et respect de procédures pour garantir la conformité.",
+        bullets: [
+            "Contrôle et vérification de conformité selon procédures établies.",
+            "Rigueur documentaire et suivi qualité.",
+        ],
+        tech: ["Qualité", "Conformité", "Documentation"],
     },
 ];
 
 export const projects: Project[] = [
     {
-        name: "App Fullstack (Auth + Dashboard)",
+        name: "Eco-buddy — Application de gestion de dépenses",
         description:
-            "Dashboard avec authentification, rôles, CRUD, et données en base. Pensé comme un projet “prod-ready”.",
-        tech: ["React", "TypeScript", "Express", "PostgreSQL", "Prisma"],
-        links: [
-            { label: "Démo", href: "#" },
-            { label: "Code", href: "#" },
-        ],
+            "Application web full-stack pour gérer dépenses, abonnements et analyses. Inclut des règles métiers (revenus récurrents, génération automatique de dépenses, budgets par catégorie, analyses mensuelles) et un déploiement auto-hébergé.",
+        tech: ["React", "TypeScript", "CSS modulaire", "Node.js", "API REST", "SQLite", "Linux", "Raspberry Pi"],
+        links: [{ label: "Démo", href: "http://eco-buddy.dempure.com" }],
         featured: true,
     },
     {
-        name: "Mini SaaS (CRUD + Billing)",
+        name: "Portfolio personnel",
         description:
-            "Base SaaS : onboarding, validations, structure prête pour paiement et emails.",
-        tech: ["React", "Node.js", "Zod", "PostgreSQL"],
-        links: [
-            { label: "Démo", href: "#" },
-            { label: "Code", href: "#" },
-        ],
+            "Portfolio présentant projets et compétences, avec gestion d’un thème dark/light et déploiement en auto-hébergement.",
+        tech: ["React", "TypeScript", "Dark/Light theme", "Linux", "Raspberry Pi"],
+        links: [{ label: "Site", href: "http://william.dempure.com" }],
         featured: true,
-    },
-    {
-        name: "Outil Dev (CLI / Script)",
-        description:
-            "Petit outil qui automatise une tâche (formatage, génération, analyse… selon tes usages).",
-        tech: ["Node.js", "TypeScript"],
-        links: [{ label: "Code", href: "#" }],
-    },
-    {
-        name: "UI Kit / Design System Lite",
-        description:
-            "Composants réutilisables + conventions (tokens, variantes, accessibilité).",
-        tech: ["React", "Tailwind"],
-        links: [{ label: "Code", href: "#" }],
     },
 ];
