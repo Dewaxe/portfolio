@@ -56,22 +56,19 @@ export function HomePage({
                                     </div>
 
                                     <div>
-                                        <div className="flex flex-wrap items-center gap-2">
-                                            <div
-                                                className={cn(
-                                                    "text-base font-semibold transition-colors",
-                                                    "text-[rgb(var(--fg-strong))]",
-                                                    "group-hover:text-[rgb(var(--accent-strong))]"
-                                                )}
-                                            >
-                                                {e.role} ·{" "}
-                                                <span className="text-[rgba(var(--muted),0.95)]">
-                                                    {e.company}
-                                                </span>
-                                            </div>
-                                            <span className="text-[rgba(var(--muted-2),0.95)]">
-                                                <ExternalIcon />
+                                        <div
+                                            className={cn(
+                                                "flex flex-wrap items-center gap-2",
+                                                "text-base font-semibold transition-colors",
+                                                "text-[rgb(var(--fg-strong))]",
+                                                "group-hover:text-[rgb(var(--accent))]"
+                                            )}
+                                        >
+                                            {e.role} ·{" "}
+                                            <span className="text-[rgba(var(--muted),0.95)]">
+                                                {e.company}
                                             </span>
+                                            <ExternalIcon trigger="card"/>
                                         </div>
 
                                         <p className="mt-2 text-sm text-[rgba(var(--muted),0.95)]">
@@ -117,7 +114,7 @@ export function HomePage({
                                                 className={cn(
                                                     "text-base font-semibold transition-colors",
                                                     "text-[rgb(var(--fg-strong))]",
-                                                    "group-hover:text-[rgb(var(--accent-strong))]"
+                                                    "group-hover:text-[rgb(var(--accent))]"
                                                 )}
                                             >
                                                 {p.name}
@@ -131,8 +128,9 @@ export function HomePage({
                                                         target="_blank"
                                                         rel="noreferrer"
                                                         className={cn(
-                                                            "inline-flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition",
-                                                            "text-[rgba(var(--muted),0.95)] hover:text-[rgb(var(--fg-strong))]"
+                                                            "group/external inline-flex items-center gap-2 rounded-xl px-3 py-2 text-xs font-semibold transition",
+                                                            "text-[rgba(var(--muted),0.95)] hover:text-[rgb(var(--accent))]",
+
                                                         )}
                                                     >
                                                         {l.label} <ExternalIcon />
@@ -168,8 +166,8 @@ export function HomePage({
                 <div className="mt-6 flex justify-end">
                     <Link
                         to="/projects"
-                        className="group inline-flex items-center gap-2 text-sm font-medium
-                                text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200"
+                        className="link group inline-flex items-center gap-2 text-sm font-medium
+                                text-slate-600 dark:text-slate-300"
                     >
                         Voir tous les projets
                         <span className="transition-transform group-hover:translate-x-1">→</span>

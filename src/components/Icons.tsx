@@ -1,13 +1,35 @@
-export function ExternalIcon() {
+type ExternalIconProps = {
+  trigger?: "card" | "external";
+};
+
+export function ExternalIcon({ trigger = "external" }: ExternalIconProps) {
+    const hoverClass =
+        trigger === "card"
+            ? "group-hover:translate-x-1 group-hover:-translate-y-1"
+            : "group-hover/external:translate-x-1 group-hover/external:-translate-y-1";
+
     return (
-        <svg viewBox="0 0 24 24" className="h-4 w-4" aria-hidden="true">
-            <path
-                d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3ZM5 5h6v2H7v10h10v-4h2v6H5V5Z"
-                fill="currentColor"
-            />
+        <svg
+            aria-hidden
+            viewBox="0 0 24 24"
+            className={`
+                ml-1 h-4 w-4
+                text-current
+                transition-transform
+                ${hoverClass}
+            `}
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        >
+            <path d="M7 17L17 7" />
+            <path d="M7 7h10v10" />
         </svg>
     );
 }
+
 
 export function GithubIcon() {
     return (

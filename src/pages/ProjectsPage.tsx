@@ -28,12 +28,16 @@ export function ProjectsPage({ projects, theme, onToggleTheme }: { projects: Pro
                         </p>
                     </div>
 
-                    <Link
-                        to="/"
-                        className="inline-flex items-center gap-2 text-sm font-semibold text-[rgba(var(--muted),0.95)] hover:underline"
-                    >
-                        ← Retour <ExternalIcon />
-                    </Link>
+                    <div className="mt-6 flex justify-end">
+                        <Link
+                            to="/"
+                            className="link group inline-flex items-center gap-2 text-sm font-medium
+                                    text-slate-600 dark:text-slate-300"
+                        >
+                            <span className="transition-transform group-hover:-translate-x-1">←</span>
+                            Retour
+                        </Link>
+                    </div>
                 </div>
 
                 <div className="mt-10 grid gap-6">

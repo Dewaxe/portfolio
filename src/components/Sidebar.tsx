@@ -1,8 +1,6 @@
 import { useMemo } from "react";
-// import { Link } from "react-router-dom";
 import type { Social } from "../data/profile";
 import { cn } from "../utils/cn";
-import { Card } from "./Card";
 import { GithubIcon, LinkedinIcon, MailIcon } from "./Icons";
 
 function renderSocialIcon(key: "github" | "linkedin" | "email") {
@@ -41,7 +39,7 @@ export function Sidebar({
     return (
         <aside className="lg:sticky lg:top-0 lg:h-screen lg:py-20">
             <div className="pt-10 lg:pt-0">
-                
+
                 {/* Header */}
                 <div className="inline-flex items-center gap-3">
                     <img
@@ -73,8 +71,8 @@ export function Sidebar({
                             href="/cv-william-dempure.pdf"
                             target="_blank"
                             rel="noreferrer"
-                            className="font-semibold text-slate-900 underline decoration-slate-300 underline-offset-4
-                                        hover:decoration-sky-500 dark:text-slate-200"
+                            className="link font-semibold text-slate-900 decoration-slate-300
+                                     dark:text-slate-200"
                         >
                             Voir le CV
                         </a>
@@ -139,11 +137,9 @@ export function Sidebar({
                             aria-label={s.label}
                             className="block"
                         >
-                            <Card className="rounded-xl hover:bg-white/40 dark:hover:bg-slate-700/45">
-                                <div className="p-3 text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100">
-                                    {renderSocialIcon(s.iconKey)}
-                                </div>
-                            </Card>
+                            <div className="link p-3 text-slate-600 transition-colors dark:text-slate-300">
+                                {renderSocialIcon(s.iconKey)}
+                            </div>
                         </a>
                     ))}
                 </div>

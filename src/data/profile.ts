@@ -84,7 +84,7 @@ export const experiences: Experience[] = [
         period: "2016",
         role: "Technicien Qualité (CDD)",
         company: "MSC SCANNING",
-        companyUrl: "https://www.mscscanning-technique.fr/",
+        companyUrl: "https://www.mscscanning-technique.fr/",    
         summary:
             "Contrôle qualité et respect de procédures pour garantir la conformité.",
         bullets: [
@@ -101,7 +101,7 @@ export const projects: Project[] = [
         description:
             "Application web full-stack pour gérer dépenses, abonnements et analyses. Inclut des règles métiers (revenus récurrents, génération automatique de dépenses, budgets par catégorie, analyses mensuelles) et un déploiement auto-hébergé.",
         tech: ["React", "TypeScript", "CSS modulaire", "Node.js", "API REST", "SQLite", "Linux", "Raspberry Pi"],
-        links: [{ label: "Démo", href: "http://eco-buddy.dempure.com" }],
+        links: [{ label: "App", href: "http://eco-buddy.dempure.com" }, { label: "GitHub", href: "https://github.com/Dewaxe/gestion-depenses" }],
         featured: true,
     },
     {
@@ -109,7 +109,7 @@ export const projects: Project[] = [
         description:
             "Portfolio présentant projets et compétences, avec gestion d’un thème dark/light et déploiement en auto-hébergement.",
         tech: ["React", "TypeScript", "Dark/Light theme", "Linux", "Raspberry Pi"],
-        links: [{ label: "Site", href: "http://william.dempure.com" }],
+        links: [{ label: "GitHub", href: "https://github.com/Dewaxe/portfolio" }],
         featured: true,
     },
 ];
