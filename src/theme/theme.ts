@@ -8,10 +8,10 @@ export function getInitialTheme(): Theme {
         return saved;
     }
 
-    const prefersDark =
+    const prefersLight =
         window.matchMedia?.("(prefers-color-scheme: dark)").matches ?? false;
 
-    return prefersDark ? "dark" : "light";
+    return prefersLight ? "light" : "dark";
 }
 
 export function applyTheme(theme: Theme): void {
