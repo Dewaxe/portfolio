@@ -44,11 +44,14 @@ export function GithubIcon() {
 
 export function LinkedinIcon() {
     return (
-        <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
-            <path
-                fill="currentColor"
-                d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.12 1 2.5 1s2.48 1.12 2.48 2.5ZM.5 23.5h4V7.5h-4v16ZM8 7.5h3.83v2.19h.05c.53-1 1.83-2.19 3.77-2.19 4.03 0 4.78 2.65 4.78 6.1v9.9h-4v-8.78c0-2.09-.04-4.78-2.91-4.78-2.91 0-3.36 2.28-3.36 4.63v8.93H8V7.5Z"
-            />
+        <svg
+            aria-hidden
+            viewBox="0 0 24 24"
+            className="h-5 w-5"
+            fill="currentColor"
+            fillRule="evenodd"
+        >
+            <path d="M20.5 2h-17A1.5 1.5 0 002 3.5v17A1.5 1.5 0 003.5 22h17a1.5 1.5 0 001.5-1.5v-17A1.5 1.5 0 0020.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 118.3 6.5a1.78 1.78 0 01-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0013 14.19a.66.66 0 000 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 012.7-1.4c1.55 0 3.36.86 3.36 3.66z"></path>
         </svg>
     );
 }
@@ -66,23 +69,44 @@ export function MailIcon() {
 
 export function SunIcon() {
     return (
-        <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
-            <path
-                fill="currentColor"
-                d="M12 18a6 6 0 1 1 0-12 6 6 0 0 1 0 12Zm0-14a1 1 0 0 1-1-1V2h2v1a1 1 0 0 1-1 1Zm0 20a1 1 0 0 1-1-1v-1h2v1a1 1 0 0 1-1 1ZM4 13H3v-2h1a1 1 0 0 1 0 2Zm18 0h-1a1 1 0 0 1 0-2h1v2ZM6.22 6.22a1 1 0 0 1-1.42 0L4.1 5.52l1.42-1.42.7.7a1 1 0 0 1 0 1.42Zm13.68 13.68a1 1 0 0 1-1.42 0l-.7-.7 1.42-1.42.7.7a1 1 0 0 1 0 1.42ZM17.78 6.22a1 1 0 0 1 0-1.42l.7-.7 1.42 1.42-.7.7a1 1 0 0 1-1.42 0ZM5.52 19.9l-1.42-1.42.7-.7a1 1 0 0 1 1.42 1.42l-.7.7Z"
-            />
+        <svg
+            aria-hidden
+            viewBox="0 0 24 24"
+            className="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        >
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2" />
+            <path d="M12 20v2" />
+            <path d="M4.93 4.93l1.41 1.41" />
+            <path d="M17.66 17.66l1.41 1.41" />
+            <path d="M2 12h2" />
+            <path d="M20 12h2" />
+            <path d="M4.93 19.07l1.41-1.41" />
+            <path d="M17.66 6.34l1.41-1.41" />
         </svg>
     );
 }
 
 export function MoonIcon() {
     return (
-        <svg viewBox="0 0 24 24" className="h-5 w-5" aria-hidden="true">
-            <path
-                fill="currentColor"
-                d="M21 14.5A8.5 8.5 0 0 1 9.5 3a6.5 6.5 0 1 0 11.5 11.5Z"
-            />
+        <svg
+            aria-hidden
+            viewBox="0 0 24 24"
+            className="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        >
+            <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
         </svg>
     );
 }
+
 
