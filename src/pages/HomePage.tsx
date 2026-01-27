@@ -148,7 +148,7 @@ export function HomePage({
                                             </div>
                                         </div>
 
-                                        <p className="mt-2 text-sm text-[rgba(var(--muted),0.95)]">
+                                        <p className="whitespace-pre-line mt-2 text-sm text-[rgba(var(--muted),0.95)]">
                                             {p.description}
                                         </p>
 
@@ -164,26 +164,26 @@ export function HomePage({
                                     </div>
 
                                     {p.image?.src ? (
-  <div className="md:mt-1">
-    <div
-      className={cn(
-        "overflow-hidden rounded-xl",
-        "ring-2 ring-slate-200 dark:ring-slate-700"
-      )}
-    >
-      <div className="aspect-[4/3] bg-slate-50 dark:bg-slate-900">
-        <img
-          src={p.image.src}
-          alt={p.image.alt ?? `Screenshot du projet ${p.name}`}
-          loading="lazy"
-          className="h-full w-full object-cover"
-        />
-      </div>
-    </div>
-  </div>
-) : (
-  <div className="hidden md:block" />
-)}
+                                        <div className="md:mt-1">
+                                            <div
+                                                className={cn(
+                                                    "overflow-hidden rounded-xl",
+                                                    "ring-2 ring-slate-200 dark:ring-slate-700"
+                                                )}
+                                            >
+                                                <div className="aspect-[4/3] bg-slate-50 dark:bg-slate-900">
+                                                    <img
+                                                        src={p.image.src}
+                                                        alt={p.image.alt ?? `Screenshot du projet ${p.name}`}
+                                                        loading="lazy"
+                                                        className="h-full w-full object-cover"
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        ) : (
+                                        <div className="hidden md:block" />
+                                    )}
 
                                 </div>
                             </Card>

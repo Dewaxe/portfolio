@@ -18,6 +18,7 @@ export type Project = {
         src: string;
         alt: string;
     };
+    year: string;
 };
 
 export type SocialIconKey = "github" | "linkedin" | "email";
@@ -102,27 +103,81 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
     {
-        name: "Eco-buddy — Application de gestion de dépenses",
+        name: "Eco-buddy",
         description:
-            "Application web full-stack pour gérer dépenses, abonnements et analyses. Inclut des règles métiers (revenus récurrents, génération automatique de dépenses, budgets par catégorie, analyses mensuelles) et un déploiement auto-hébergé.",
-        tech: ["React", "TypeScript", "CSS modulaire", "Node.js", "API REST", "SQLite", "Linux", "Raspberry Pi"],
+            "Application web full-stack pour gérer et analyser ses dépenses, abonnements et revenus.\nInclut des règles métiers : revenus récurrents, génération automatique de dépenses par les abonnements, budgetisation par catégorie, analyses mensuelles, etc.\nAuthentification sécurisée.\nDéploiement auto-hébergé.",
+        tech: ["React", "TypeScript", "CSS modulaire", "Node.js", "API REST", "SQLite", "Raspberry Pi"],
         links: [{ label: "App", href: "http://eco-buddy.dempure.com" }, { label: "GitHub", href: "https://github.com/Dewaxe/gestion-depenses" }],
         featured: true,
         image: {
             src: "screenshots/screenshot-eco-buddy.png",
             alt: "Capture d'écran de l'application Eco-buddy (dashboard)"
         },
+        year: "2026",
     },
     {
-        name: "Portfolio personnel",
+        name: "Portfolio",
         description:
-            "Portfolio présentant projets et compétences, avec gestion d’un thème dark/light et déploiement en auto-hébergement.",
-        tech: ["React", "TypeScript", "Dark/Light theme", "Linux", "Raspberry Pi"],
+            "Portfolio présentant projets, expériences, liens vers les réseaux sociaux et CV consultable.\nGestion d’un thème dark / light.\nDéploiement auto-hébergé.",
+        tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Figma", "Raspberry Pi"],
         links: [{ label: "GitHub", href: "https://github.com/Dewaxe/portfolio" }],
         featured: true,
         image: {
             src: "screenshots/screenshot-portfolio-dark-light.png",
             alt: "Capture d'écran du portfolio (dark mode VS light mode)"
         },
+        year: "2026",
+    },
+    {
+        name: "Portfolio",
+        description:
+            "Portfolio présentant projets et compétences, avec gestion d’un thème dark/light et déploiement en auto-hébergement.",
+        tech: ["React", "TypeScript", "Dark/Light theme", "Linux", "Raspberry Pi"],
+        links: [{ label: "GitHub", href: "https://github.com/Dewaxe/portfolio" }],
+        featured: false,
+        image: {
+            src: "screenshots/screenshot-portfolio-dark-light.png",
+            alt: "Capture d'écran du portfolio (dark mode VS light mode)"
+        },
+        year: "2026",
+    },
+    {
+        name: "Portfolio",
+        description:
+            "Portfolio présentant projets et compétences, avec gestion d’un thème dark/light et déploiement en auto-hébergement.",
+        tech: ["React", "TypeScript", "Dark/Light theme", "Linux", "Raspberry Pi"],
+        links: [{ label: "GitHub", href: "https://github.com/Dewaxe/portfolio" }],
+        featured: false,
+        image: {
+            src: "screenshots/screenshot-portfolio-dark-light.png",
+            alt: "Capture d'écran du portfolio (dark mode VS light mode)"
+        },
+        year: "2026",
+    },
+    {
+        name: "Portfolio",
+        description:
+            "Portfolio présentant projets et compétences, avec gestion d’un thème dark/light et déploiement en auto-hébergement.",
+        tech: ["React", "TypeScript", "Dark/Light theme", "Linux", "Raspberry Pi"],
+        links: [{ label: "GitHub", href: "https://github.com/Dewaxe/portfolio" }],
+        featured: false,
+        image: {
+            src: "screenshots/screenshot-portfolio-dark-light.png",
+            alt: "Capture d'écran du portfolio (dark mode VS light mode)"
+        },
+        year: "2026",
+    },
+    {
+        name: "Portfolio",
+        description:
+            "Portfolio présentant projets et compétences, avec gestion d’un thème dark/light et déploiement en auto-hébergement.",
+        tech: ["React", "TypeScript", "Dark/Light theme", "Linux", "Raspberry Pi"],
+        links: [{ label: "GitHub", href: "https://github.com/Dewaxe/portfolio" }],
+        featured: false,
+        image: {
+            src: "screenshots/screenshot-portfolio-dark-light.png",
+            alt: "Capture d'écran du portfolio (dark mode VS light mode)"
+        },
+        year: "2026",
     },
 ];
