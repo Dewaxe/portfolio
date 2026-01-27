@@ -14,6 +14,10 @@ export type Project = {
     tech: string[];
     links: { label: string; href: string }[];
     featured?: boolean;
+    image?: {
+        src: string;
+        alt: string;
+    };
 };
 
 export type SocialIconKey = "github" | "linkedin" | "email";
@@ -103,6 +107,10 @@ export const projects: Project[] = [
         tech: ["React", "TypeScript", "CSS modulaire", "Node.js", "API REST", "SQLite", "Linux", "Raspberry Pi"],
         links: [{ label: "App", href: "http://eco-buddy.dempure.com" }, { label: "GitHub", href: "https://github.com/Dewaxe/gestion-depenses" }],
         featured: true,
+        image: {
+            src: "screenshots/screenshot-eco-buddy.png",
+            alt: "Capture d'écran de l'application Eco-buddy (dashboard)"
+        },
     },
     {
         name: "Portfolio personnel",
@@ -111,5 +119,9 @@ export const projects: Project[] = [
         tech: ["React", "TypeScript", "Dark/Light theme", "Linux", "Raspberry Pi"],
         links: [{ label: "GitHub", href: "https://github.com/Dewaxe/portfolio" }],
         featured: true,
+        image: {
+            src: "screenshots/screenshot-portfolio-dark-light.png",
+            alt: "Capture d'écran du portfolio (dark mode VS light mode)"
+        },
     },
 ];
