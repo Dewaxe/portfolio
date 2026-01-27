@@ -78,7 +78,7 @@ export const experiences: Experience[] = [
             "Organisation des opérations quotidiennes et coordination d’équipe.",
             "Gestion des priorités et maintien de la qualité de service sous pression.",
         ],
-        tech: ["Coordination", "Organisation", "Gestion du temps"],
+        tech: [],
     },
     {
         period: "2016",
@@ -91,7 +91,7 @@ export const experiences: Experience[] = [
             "Contrôle et vérification de conformité selon procédures établies.",
             "Rigueur documentaire et suivi qualité.",
         ],
-        tech: ["Qualité", "Conformité", "Documentation"],
+        tech: [],
     },
 ];
 

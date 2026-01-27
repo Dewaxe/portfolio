@@ -41,15 +41,9 @@ export function HomePage({
                 <SectionHeading title="EXPÉRIENCE" />
 
                 <div className="mt-8 space-y-6">
-                    {experiences.map((e) => (
-                        <a
-                            key={`${e.period}-${e.company}`}
-                            href={e.companyUrl ?? "#"}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="block"
-                        >
-                            <Card className="group p-6">
+                    {experiences.map((e) => {
+                        const CardContent = (
+                            <Card className={cn("group p-6", e.companyUrl && "cursor-pointer")}>
                                 <div className="grid gap-3 sm:grid-cols-[140px_1fr]">
                                     <div className="text-xs font-semibold text-[rgba(var(--muted-2),0.95)]">
                                         {e.period}
@@ -68,7 +62,8 @@ export function HomePage({
                                             <span className="text-[rgba(var(--muted),0.95)]">
                                                 {e.company}
                                             </span>
-                                            <ExternalIcon trigger="card"/>
+
+                                            {e.companyUrl && <ExternalIcon trigger="card" />}
                                         </div>
 
                                         <p className="mt-2 text-sm text-[rgba(var(--muted),0.95)]">
@@ -81,20 +76,34 @@ export function HomePage({
                                             ))}
                                         </ul>
 
-                                        <div className="mt-4 flex flex-wrap gap-2">
-                                            {e.tech.map((t) => (
-                                                <Chip
-                                                    key={t}
-                                                >
-                                                    {t}
-                                                </Chip>
-                                            ))}
-                                        </div>
+                                        {e.tech.length > 0 && (
+                                            <div className="mt-4 flex flex-wrap gap-2">
+                                                {e.tech.map((t) => (
+                                                    <Chip key={t}>{t}</Chip>
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
                             </Card>
-                        </a>
-                    ))}
+                        );
+
+                        return e.companyUrl ? (
+                            <a
+                                key={`${e.period}-${e.company}`}
+                                href={e.companyUrl}
+                                target="_blank"
+                                rel="noreferrer"
+                                className="block"
+                            >
+                                {CardContent}
+                            </a>
+                        ) : (
+                            <div key={`${e.period}-${e.company}`} className="block">
+                                {CardContent}
+                            </div>
+                        );
+                    })}
                 </div>
             </section>
 
