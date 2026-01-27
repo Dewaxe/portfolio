@@ -11,14 +11,16 @@ function renderSocialIcon(key: "github" | "linkedin" | "email") {
 
 export function Sidebar({
     name,
-    title,
+    title1,
+    title2,
     blurb,
     socials,
     sectionIds,
     activeSectionId,
 }: {
     name: string;
-    title: string;
+    title1: string;
+    title2: string;
     blurb: string;
     socials: Social[];
     sectionIds: string[];
@@ -52,12 +54,15 @@ export function Sidebar({
                             "ring-2 ring-slate-200 dark:ring-slate-700"
                         )}
                     />
-                    <div>
+                    <div className="text-center">
                         <h1 className="text-2xl font-semibold tracking-tight text-slate-900 dark:text-slate-200">
                             {name}
                         </h1>
+                        <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                            {title1}
+                        </p>
                         <p className="text-sm font-medium text-slate-600 dark:text-slate-400">
-                            {title}
+                            {title2}
                         </p>
                     </div>
                 </div>

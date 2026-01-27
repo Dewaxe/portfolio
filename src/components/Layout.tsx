@@ -11,7 +11,8 @@ export function Layout({
     theme,
     onToggleTheme,
     name,
-    title,
+    title1,
+    title2,
     blurb,
     socials,
     children,
@@ -19,7 +20,8 @@ export function Layout({
     theme: Theme;
     onToggleTheme: () => void;
     name: string;
-    title: string;
+    title1: string;
+    title2: string;
     blurb: string;
     socials: Social[];
     children: React.ReactNode;
@@ -40,7 +42,8 @@ export function Layout({
                 <div className="grid gap-12 lg:grid-cols-[360px_1fr] lg:gap-16">
                     <Sidebar
                         name={name}
-                        title={title}
+                        title1={title1}
+                        title2={title2}
                         blurb={blurb}
                         socials={socials}
                         sectionIds={sectionIds}

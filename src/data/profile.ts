@@ -31,7 +31,8 @@ export type Social = {
 export const profile = {
     initials: "WD",
     name: "William Dempuré",
-    title: "Développeur Fullstack | React/TypeScript | Python",
+    title1: "Développeur Fullstack ",
+    title2: "React/TypeScript | Python",
     blurb:
         "Je développe des applications web full-stack, du front à l’API, jusqu’au déploiement.",
     email: "williamdempure@gmail.com",

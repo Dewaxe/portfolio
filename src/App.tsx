@@ -29,7 +29,8 @@ export default function App() {
                         theme={theme}
                         onToggleTheme={() => setTheme((t) => (t === "dark" ? "light" : "dark"))}
                         name={profile.name}
-                        title={profile.title}
+                        title1={profile.title1}
+                        title2={profile.title2}
                         blurb={profile.blurb}
                         socials={socials}
                     >
