@@ -37,7 +37,7 @@ export function HomePage({
             </section>
 
             {/* EXPERIENCE */}
-            <section id="experience" className="scroll-mt-28 mt-24">
+            <section id="experience" className="scroll-mt-10 mt-24">
                 <SectionHeading title="EXPÉRIENCE" />
 
                 <div className="mt-8 space-y-6">
@@ -99,7 +99,7 @@ export function HomePage({
             </section>
 
             {/* PROJECTS */}
-            <section id="projects" className="scroll-mt-28 mt-24">
+            <section id="projects" className="scroll-mt-10 mt-24">
                 <SectionHeading title="PROJETS" />
 
                 <div className="mt-8 space-y-6">

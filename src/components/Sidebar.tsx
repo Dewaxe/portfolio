@@ -105,8 +105,8 @@ export function Sidebar({
                                                 "block h-[2px] min-h-[2px] w-10 shrink-0 rounded-full",
                                                 "transition-[transform,background-color,width] duration-200 ease-out",
                                                 isActive
-                                                    ? "translate-x-3 w-14 bg-sky-600 dark:bg-sky-400"
-                                                    : "bg-slate-300 group-hover:translate-x-3 group-hover:w-14 group-hover:bg-sky-600 dark:bg-slate-700 dark:group-hover:bg-sky-400"
+                                                    ? " w-20 bg-sky-600 dark:bg-sky-400"
+                                                    : "bg-slate-300 group-hover:w-20 group-hover:bg-sky-600 dark:bg-slate-700 dark:group-hover:bg-sky-400"
                                             )}
                                         />
 
