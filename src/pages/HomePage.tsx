@@ -70,11 +70,28 @@ export function HomePage({
                                             {e.summary}
                                         </p>
 
-                                        <ul className="mt-3 list-disc space-y-1 pl-5 text-sm text-[rgba(var(--muted),0.95)]">
-                                            {e.bullets.map((b) => (
-                                                <li key={b}>{b}</li>
-                                            ))}
-                                        </ul>
+                                        <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-[rgba(var(--muted),0.95)]">
+  {e.bullets.map((b) => {
+    const lines = b.split("\n");
+    const hasTitleLine = lines.length > 1;
+
+    return (
+      <li key={b} className="whitespace-pre-line">
+        {hasTitleLine ? (
+          <>
+            <span className="font-semibold text-[rgb(var(--fg-strong))]">
+              {lines[0]}
+            </span>
+            {"\n"}
+            {lines.slice(1).join("\n")}
+          </>
+        ) : (
+          b
+        )}
+      </li>
+    );
+  })}
+</ul>
 
                                         {e.tech.length > 0 && (
                                             <div className="mt-4 flex flex-wrap gap-2">

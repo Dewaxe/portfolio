@@ -51,13 +51,12 @@ export const experiences: Experience[] = [
         role: "Développeur Fullstack",
         company: "Auto-entrepreneur",
         summary:
-            "Missions orientées automatisation et data : extraction/contrôle documentaire et visualisation d’indicateurs pour faciliter la prise de décision.",
+            "Missions orientées automatisation et visualisation de data",
         bullets: [
-            "Automatisation avec n8n pour l’extraction d’informations depuis des fichiers PDF.",
-            "Analyse de conformité et contrôle documentaire selon un cahier des charges.",
-            "Réalisation d’un dashboard Power BI pour une exploitation agricole (KPIs & visualisations).",
+            "Mission : Automatisation de contrôle documentaire avec n8n\nAutomatisation d'extraction d’informations de fichiers PDF.\nGénération automatique d'un compte rendu mettant en évidence la conformité du document selon un cahier des charges.",
+            "Mission : Data Visualisation avec Power BI\nRéalisation d’un dashboard Power BI pour une exploitation agricole à partir de sa base de données.\nCréation de KPI facilitant le pilotage de l’activité et la prise de décision.",
         ],
-        tech: ["n8n", "Power BI", "Data visualisation"],
+        tech: ["n8n", "Power BI", "DAX"],
     },
     {
         period: "2024",
@@ -65,11 +64,10 @@ export const experiences: Experience[] = [
         company: "Safran",
         companyUrl: "https://www.safran-group.com/fr",
         summary:
-            "Développement et livraison de fonctionnalités sur des applications web (et web/mobile), avec une stack React/TypeScript et Python/FastAPI, et un focus sur le déploiement.",
+            "Développement de deux applications",
         bullets: [
-            "Développement frontend en React/TypeScript avec Material UI pour une application destinée aux RRH du groupe.",
-            "Conteneurisation Docker et déploiement sur OpenShift.",
-            "Développement d’une application de podcasts (web & mobile) en Python/FastAPI, React/TypeScript et SQL.",
+            "Application  de rétro-planning :\nDestinée aux RRH du groupe pour automatiser un rétroplanning à destination des salariés expérimentés.\nDéveloppement front only en React/TypeScript avec Material UI.\nConteneurisation avec Docker.\nDéploiement en interne avec Openshift.",
+            "Application de podcasts :\nPWA développée en Python/FastAPI, React/TypeScript et SQL.",
         ],
         tech: ["React", "TypeScript", "Material UI", "Python", "FastAPI", "SQL", "Docker", "OpenShift", "SQLAlchemy"],
     },
@@ -79,10 +77,10 @@ export const experiences: Experience[] = [
         company: "McDonald’s",
         companyUrl: "https://www.mcdonalds.fr/",
         summary:
-            "Management opérationnel et coordination d’équipe en environnement exigeant.",
+            "Évolution d’équipier polyvalent à formateur, puis chef d’équipe, responsable open et manager en formation",
         bullets: [
-            "Organisation des opérations quotidiennes et coordination d’équipe.",
-            "Gestion des priorités et maintien de la qualité de service sous pression.",
+            "Formation des nouveaux équipiers en utilisant une approche personnalisée",
+            "Responsable d’ouverture et de fermeture du restaurant",
         ],
         tech: [],
     },
@@ -92,10 +90,10 @@ export const experiences: Experience[] = [
         company: "MSC SCANNING",
         companyUrl: "https://www.mscscanning-technique.fr/",    
         summary:
-            "Contrôle qualité et respect de procédures pour garantir la conformité.",
+            "Implémentation du plan d’actions pour la certification ISO 9001:2015",
         bullets: [
-            "Contrôle et vérification de conformité selon procédures établies.",
-            "Rigueur documentaire et suivi qualité.",
+            "Révision des procédures et réalisation d’audits pour chaque poste.",
+            "Mise en place d'un suivi Excel des doubles sauvegardes des contrats.",
         ],
         tech: [],
     },
@@ -103,10 +101,10 @@ export const experiences: Experience[] = [
 
 export const projects: Project[] = [
     {
-        name: "Eco-buddy",
+        name: "Eco-buddy (en développement)",
         description:
-            "Application web full-stack pour gérer et analyser ses dépenses, abonnements et revenus.\nInclut des règles métiers : revenus récurrents, génération automatique de dépenses par les abonnements, budgetisation par catégorie, analyses mensuelles, etc.\nAuthentification sécurisée.\nDéploiement auto-hébergé.",
-        tech: ["React", "TypeScript", "CSS modulaire", "Node.js", "API REST", "SQLite", "Raspberry Pi"],
+            "Projet perso\n\nApplication web full-stack pour gérer et analyser ses dépenses, abonnements et revenus.\nInclut des règles métiers : revenus récurrents, génération automatique de dépenses par les abonnements, budgetisation par catégorie, analyses mensuelles, etc.\nAuthentification sécurisée.\nDéploiement auto-hébergé.",
+        tech: ["React", "TypeScript", "Javascript", "CSS", "Node.js", "Express", "API REST", "SQLite", "Jest", "Supertest", "Linux", "Raspberry Pi"],
         links: [{ label: "App", href: "http://eco-buddy.dempure.com" }, { label: "GitHub", href: "https://github.com/Dewaxe/gestion-depenses" }],
         featured: true,
         image: {
@@ -118,8 +116,8 @@ export const projects: Project[] = [
     {
         name: "Portfolio",
         description:
-            "Portfolio présentant projets, expériences, liens vers les réseaux sociaux et CV consultable.\nGestion d’un thème dark / light.\nDéploiement auto-hébergé.",
-        tech: ["React", "TypeScript", "Vite", "Tailwind CSS", "Figma", "Raspberry Pi"],
+            "Projet perso\n\nPortfolio présentant projets, expériences, liens vers les réseaux sociaux et CV consultable.\nGestion d’un thème dark / light.\nDéploiement auto-hébergé.",
+        tech: ["React", "TypeScript", "Javascript", "Vite", "Tailwind CSS", "Nginx", "Linux", "Raspberry Pi", "Figma"],
         links: [{ label: "GitHub", href: "https://github.com/Dewaxe/portfolio" }],
         featured: true,
         image: {
@@ -129,55 +127,57 @@ export const projects: Project[] = [
         year: "2026",
     },
     {
-        name: "Portfolio",
+        name: "Dashboard Power BI",
         description:
-            "Portfolio présentant projets et compétences, avec gestion d’un thème dark/light et déploiement en auto-hébergement.",
-        tech: ["React", "TypeScript", "Dark/Light theme", "Linux", "Raspberry Pi"],
-        links: [{ label: "GitHub", href: "https://github.com/Dewaxe/portfolio" }],
+            "Projet pour un client (exploitation agricole)\n\nRéalisation d’un dashboard Power BI à partir de la base de données d'une exploitation agricole\nCréation de KPI facilitant le pilotage de l’activité et la prise de décision.",
+        tech: ["Power BI", "DAX"],
+        links: [],
         featured: false,
-        image: {
-            src: "screenshots/screenshot-portfolio-dark-light.png",
-            alt: "Capture d'écran du portfolio (dark mode VS light mode)"
-        },
         year: "2026",
     },
     {
-        name: "Portfolio",
+        name: "Automatisation du contrôle de conformité PDF",
         description:
-            "Portfolio présentant projets et compétences, avec gestion d’un thème dark/light et déploiement en auto-hébergement.",
-        tech: ["React", "TypeScript", "Dark/Light theme", "Linux", "Raspberry Pi"],
-        links: [{ label: "GitHub", href: "https://github.com/Dewaxe/portfolio" }],
+            "Projet pour un client (Défense)\n\nExtraction d’informations d'un fichier PDF.\nVérification de la conformité du PDF avec une vingtaine de critères (police utilisée, chapitrage, cohérence légende / image, etc.)\nGénération automatique d'un compte rendu des éléments à modifier.",
+        tech: ["n8n"],
+        links: [],
         featured: false,
-        image: {
-            src: "screenshots/screenshot-portfolio-dark-light.png",
-            alt: "Capture d'écran du portfolio (dark mode VS light mode)"
-        },
-        year: "2026",
+        year: "2025",
     },
     {
-        name: "Portfolio",
+        name: "Application de podcasts",
         description:
-            "Portfolio présentant projets et compétences, avec gestion d’un thème dark/light et déploiement en auto-hébergement.",
-        tech: ["React", "TypeScript", "Dark/Light theme", "Linux", "Raspberry Pi"],
-        links: [{ label: "GitHub", href: "https://github.com/Dewaxe/portfolio" }],
+            "Développée au cours de mon stage chez Safran\n\nBase de données gérée avec DBeaver. Backend avec FastAPI (framework Python). Utilisation de l'ORM SQLAlchemy et de la bibliothèque Pydantic. Frontend en React Typescript avec Material UI. Authentification avec le SSO de l'entreprise. Mise en place d'une PWA pour rendre l'applicationa accessible sur smartphone.",
+        tech: ["React", "TypeScript", "Material UI", "FastAPI", "Python", "SQLAlchemy", "Pydantic", "DBeaver", "SSO"],
+        links: [],
         featured: false,
-        image: {
-            src: "screenshots/screenshot-portfolio-dark-light.png",
-            alt: "Capture d'écran du portfolio (dark mode VS light mode)"
-        },
-        year: "2026",
+        year: "2025",
     },
     {
-        name: "Portfolio",
+        name: "Application de rétro-planning",
         description:
-            "Portfolio présentant projets et compétences, avec gestion d’un thème dark/light et déploiement en auto-hébergement.",
-        tech: ["React", "TypeScript", "Dark/Light theme", "Linux", "Raspberry Pi"],
-        links: [{ label: "GitHub", href: "https://github.com/Dewaxe/portfolio" }],
+            "Développée au cours de mon stage chez Safran\n\nFront only, en React Typescript avec Material UI. Extraction du résultat en PDF, Excel ou/et CSV. Injection des données manuellement ou à partir d'un CSV. Dockerisation de l'application et déploiement en interne avec Openshift.",
+        tech: ["React", "TypeScript", "Material UI", "Figma", "Docker"],
+        links: [],
         featured: false,
-        image: {
-            src: "screenshots/screenshot-portfolio-dark-light.png",
-            alt: "Capture d'écran du portfolio (dark mode VS light mode)"
-        },
-        year: "2026",
+        year: "2025",
     },
+    {
+        name: "Application de prévision météo",
+        description:
+            "Développée à l'ECE en binôme\n\nApplication en React Javascript. Utilisation d'une API de météo. Vérification de la compatibilité mobile avec Expo Go.",
+        tech: ["React", "JavaScript", "API", "Expo Go"],
+        links: [{ label: "GitHub", href: "https://github.com/999-andreas/Projet-Meteo-React" }],
+        featured: false,
+        year: "2024",
+    },
+    {
+        name: "Jeu du pendu",
+        description:
+            "Développée à l'UTBM en groupe\n\nApplication en VBA du jeu du pendu. Site web de présentation du projet codé en HTML et CSS.",
+        tech: ["VBA", "HTML", "CSS"],
+        links: [],
+        featured: false,
+        year: "2013",
+    }
 ];
