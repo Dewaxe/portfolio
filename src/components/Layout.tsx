@@ -38,7 +38,7 @@ export function Layout({
                 <ThemeSwitch theme={theme} onToggle={onToggleTheme} />
             </div>
 
-            <div className="relative mx-auto max-w-6xl px-4">
+            <div className="relative mx-auto max-w-6xl px-4 pr-8 sm:px-4">
                 <div className="grid gap-12 lg:grid-cols-[360px_1fr] lg:gap-16">
                     <Sidebar
                         name={name}

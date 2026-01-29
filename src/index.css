@@ -49,10 +49,14 @@
 html {
     scroll-behavior: smooth;
     font-size: 17px;
+    scrollbar-gutter: stable;
 }
 
 body {
     margin: 0;
+    background: rgb(var(--bg));
+    color: rgb(var(--fg));
+    overflow-x: hidden;
 }
 
 ::selection {
