@@ -149,9 +149,6 @@ export function Sidebar({
                     ))}
                 </div>
 
-                <div className="mt-10 text-xs text-slate-500 dark:text-slate-500">
-                    © {new Date().getFullYear()} {name}
-                </div>
             </div>
         </aside>
     );

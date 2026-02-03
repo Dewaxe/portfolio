@@ -17,7 +17,9 @@ export function HomePage({
         <>
             {/* ABOUT */}
             <section id="about" className="scroll-mt-28 pt-10 lg:pt-0">
-                <SectionHeading title="À PROPOS" />
+                <div className="sticky top-0 z-30 -mx-4 px-4 py-3 bg-[rgba(var(--bg),0.92)] backdrop-blur-md md:static md:mx-0 md:px-0 md:py-0 md:bg-transparent md:backdrop-blur-0">
+                    <SectionHeading title="À PROPOS" />
+                </div>
                 <div className="mt-6 space-y-4 text-sm leading-relaxed text-[rgba(var(--muted),0.95)]">
                     <p>
                         Je suis développeur fullstack, et j’aime autant travailler sur l’interface que sur le backend :
@@ -38,7 +40,9 @@ export function HomePage({
 
             {/* EXPERIENCE */}
             <section id="experience" className="scroll-mt-10 mt-24">
-                <SectionHeading title="EXPÉRIENCE" />
+                <div className="sticky top-0 z-30 -mx-4 px-4 py-3 bg-[rgba(var(--bg),0.92)] backdrop-blur-md md:static md:mx-0 md:px-0 md:py-0 md:bg-transparent md:backdrop-blur-0">
+                    <SectionHeading title="EXPÉRIENCE" />
+                </div>
 
                 <div className="mt-8 space-y-6">
                     {experiences.map((e) => {
@@ -54,8 +58,8 @@ export function HomePage({
                                             className={cn(
                                                 "flex flex-wrap items-center gap-2",
                                                 "text-base font-semibold transition-colors",
-                                                "text-[rgb(var(--fg-strong))]",
-                                                "group-hover:text-[rgb(var(--accent))]"
+                                                "text-[rgb(var(--accent))] sm:text-[rgb(var(--fg-strong))]",
+                                                "sm:group-hover:text-[rgb(var(--accent))]"
                                             )}
                                         >
                                             {e.role} ·{" "}
@@ -71,27 +75,27 @@ export function HomePage({
                                         </p>
 
                                         <ul className="mt-3 list-disc space-y-2 pl-5 text-sm text-[rgba(var(--muted),0.95)]">
-  {e.bullets.map((b) => {
-    const lines = b.split("\n");
-    const hasTitleLine = lines.length > 1;
+                                            {e.bullets.map((b) => {
+                                                const lines = b.split("\n");
+                                                const hasTitleLine = lines.length > 1;
 
-    return (
-      <li key={b} className="whitespace-pre-line">
-        {hasTitleLine ? (
-          <>
-            <span className="font-semibold text-[rgb(var(--fg-strong))]">
-              {lines[0]}
-            </span>
-            {"\n"}
-            {lines.slice(1).join("\n")}
-          </>
-        ) : (
-          b
-        )}
-      </li>
-    );
-  })}
-</ul>
+                                                return (
+                                                    <li key={b} className="whitespace-pre-line">
+                                                        {hasTitleLine ? (
+                                                            <>
+                                                                <span className="font-semibold text-[rgb(var(--fg-strong))]">
+                                                                    {lines[0]}
+                                                                </span>
+                                                                {"\n"}
+                                                                {lines.slice(1).join("\n")}
+                                                            </>
+                                                        ) : (
+                                                            b
+                                                        )}
+                                                    </li>
+                                                );
+                                            })}
+                                        </ul>
 
                                         {e.tech.length > 0 && (
                                             <div className="mt-4 flex flex-wrap gap-2">
@@ -126,7 +130,9 @@ export function HomePage({
 
             {/* PROJECTS */}
             <section id="projects" className="scroll-mt-10 mt-24">
-                <SectionHeading title="PROJETS" />
+                <div className="sticky top-0 z-30 -mx-4 px-4 py-3 bg-[rgba(var(--bg),0.92)] backdrop-blur-md md:static md:mx-0 md:px-0 md:py-0 md:bg-transparent md:backdrop-blur-0">
+                    <SectionHeading title="PROJETS" />
+                </div>
 
                 <div className="mt-8 space-y-6">
                     {projects
@@ -135,18 +141,18 @@ export function HomePage({
                             <Card key={p.name} className="group p-6">
                                 <div className="grid gap-5 md:grid-cols-[1fr_220px]">
                                     <div>
-                                        <div className="flex items-center justify-between gap-4">
+                                        <div className="flex flex-wrap items-center justify-between gap-4">
                                             <h3
                                                 className={cn(
                                                     "text-base font-semibold transition-colors",
-                                                    "text-[rgb(var(--fg-strong))]",
-                                                    "group-hover:text-[rgb(var(--accent))]"
+                                                    "text-[rgb(var(--accent))] sm:text-[rgb(var(--fg-strong))]",
+                                                    "sm:group-hover:text-[rgb(var(--accent))]"
                                                 )}
                                             >
                                                 {p.name}
                                             </h3>
 
-                                            <div className="flex items-center gap-2">
+                                            <div className="flex flex-wrap items-center gap-2">
                                                 {p.links.map((l) => (
                                                     <a
                                                         key={l.label}

@@ -80,7 +80,7 @@ export function ProjectsPage({
                                             </td>
 
                                             <td className="px-5 py-5 align-top">
-                                                <div className="font-semibold text-[rgb(var(--fg-strong))] transition-colors group-hover:text-[rgb(var(--accent))]">
+                                                <div className="font-semibold text-[rgb(var(--accent))] sm:text-[rgb(var(--fg-strong))] transition-colors sm:group-hover:text-[rgb(var(--accent))]">
                                                     {p.name}
                                                 </div>
                                             </td>
@@ -137,8 +137,13 @@ export function ProjectsPage({
                             <div key={p.name}>
                                 <div className="p-5">
                                     <div className="flex items-start justify-between gap-4">
-                                        <div className="font-semibold text-[rgb(var(--fg-strong))]">
-                                            {p.name}
+                                        <div>
+                                            <div className="text-xs font-semibold tracking-widest text-[rgba(var(--muted-2),0.95)]">
+                                                {p.year}
+                                            </div>
+                                            <div className="mt-1 font-semibold text-[rgb(var(--accent))]">
+                                                {p.name}
+                                            </div>
                                         </div>
 
                                         <div className="flex flex-wrap justify-end gap-3">

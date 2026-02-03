@@ -38,7 +38,7 @@ export function Layout({
                 <ThemeSwitch theme={theme} onToggle={onToggleTheme} />
             </div>
 
-            <div className="relative mx-auto max-w-6xl px-4 pr-8 sm:px-4">
+            <div className="relative mx-auto max-w-6xl px-4">
                 <div className="grid gap-12 lg:grid-cols-[360px_1fr] lg:gap-16">
                     <Sidebar
                         name={name}
@@ -50,8 +50,11 @@ export function Layout({
                         activeSectionId={active}
                     />
 
-                    <main className="pb-24 lg:py-20">
+                    <main className="pb-6 lg:py-20">
                         {children}
+                        <footer className="-mt-4 text-xs text-slate-500 dark:text-slate-500">
+                            © {new Date().getFullYear()} {name}
+                        </footer>
                     </main>
                 </div>
             </div>
