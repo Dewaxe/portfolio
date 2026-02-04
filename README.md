@@ -1,73 +1,63 @@
-# React + TypeScript + Vite
+# Portfolio – William Dempuré
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bienvenue sur le dépôt de mon **portfolio personnel**.  
+Ce projet a pour objectif de présenter mon profil de **développeur full-stack**, mes compétences techniques et quelques projets concrets sur lesquels j’ai travaillé.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🎯 Objectifs du projet
 
-## React Compiler
+- Présenter mon parcours, mes compétences et mes projets
+- Mettre en avant et approfondir ma maîtrise du développement frontend
+- Avoir un projet **propre, maintenable et déployé en conditions réelles**
+- Montrer mon autonomie sur toute la chaîne : développement, build et déploiement
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🛠️ Stack technique
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Frontend
+- **React** : architecture en composants, logique claire et réutilisable
+- **TypeScript** : typage strict pour plus de robustesse et de lisibilité
+- **Vite** : bundler rapide pour le développement et la production
+- **CSS modulaire** : styles organisés, maintenables et responsives
+- **Dark / Light mode** : gestion du thème sombre à l’échelle de l’application
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+### Outils & qualité
+- **ESLint** : maintien d’un code cohérent et propre
+- **Git** : gestion de versions et historique clair
+- **Build optimisé** : application prête pour un déploiement en production
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 🚀 Déploiement
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Le site est **auto-hébergé** sur un serveur personnel (raspberry pi) :
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Environnement Linux
+- Build de l’application côté frontend
+- Serveur web pour la mise en ligne
+- Gestion manuelle du déploiement pour une parfaite compréhension de la chaîne complète
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+👉 Portfolio en ligne : **https://william.dempure.com**
+
+---
+
+## 📁 Philosophie du projet
+
+Ce portfolio n’est pas un simple site vitrine :
+- chaque choix technique est volontaire,
+- le code est pensé pour être lisible et évolutif,
+- le projet sert de base pour expérimenter, améliorer et approfondir mes compétences.
+
+Il évolue régulièrement au fil de mes projets et de mes apprentissages.
+
+---
+
+## 👋 À propos de moi
+
+Je suis **développeur full-stack**, avec une forte appétence pour le frontend moderne et la conception d’applications complètes.  
+Autonome, curieux et rigoureux, j’aime **comprendre en profondeur les outils que j’utilise** et travailler sur des projets concrets et utiles.
+
+📫 Contact : williamdempure@gmail.com  
+🌐 Site : https://william.dempure.com
