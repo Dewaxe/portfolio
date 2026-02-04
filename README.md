@@ -30,6 +30,32 @@ Ce projet a pour objectif de présenter mon profil de **développeur full-stack*
 
 ---
 
+## 🗂️ Architecture du projet
+
+Le dépôt est une application front unique (Vite + React), organisée pour séparer clairement les composants UI, les pages et la logique transversale.
+
+```txt
+.
+├── public/                 # Assets statiques
+├── src/
+│   ├── components/         # Composants UI réutilisables
+│   ├── data/               # Données de profil / contenu
+│   ├── hooks/              # Hooks React personnalisés
+│   ├── pages/              # Pages principales
+│   ├── theme/              # Thème et styles liés au thème
+│   ├── utils/              # Helpers et utilitaires
+│   ├── App.tsx             # Composition principale / routing
+│   ├── main.tsx            # Point d’entrée
+│   └── index.css           # Styles globaux
+├── index.html              # Template HTML
+├── package.json            # Scripts et dépendances
+├── tailwind.config.js      # Configuration Tailwind
+├── vite.config.ts          # Configuration Vite
+└── README.md
+```
+
+---
+
 ## 🚀 Déploiement
 
 Le site est **auto-hébergé** sur un serveur personnel (raspberry pi) :
