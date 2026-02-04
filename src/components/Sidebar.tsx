@@ -45,8 +45,8 @@ export function Sidebar({
 
         window.goatcounter.count({
             event: true,
-            path: "event/download_cv",
-            title: "Download CV",
+            path: "event/click_cv",
+            title: "Click CV",
         });
 
         const href = (e.currentTarget as HTMLAnchorElement).href;
@@ -60,7 +60,6 @@ export function Sidebar({
             }
         }, 150);
     }
-
 
     return (
         <aside className="lg:sticky lg:top-0 lg:h-screen lg:py-20">
