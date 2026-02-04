@@ -38,12 +38,27 @@ export function Sidebar({
         }));
     }, [sectionIds]);
 
-    function trackDownloadCV() {
-        window.goatcounter?.count?.({
+    function trackClickCV(e: React.MouseEvent<HTMLAnchorElement>) {
+        if (!window.goatcounter?.count) return;
+
+        e.preventDefault();
+
+        window.goatcounter.count({
             event: true,
             path: "event/download_cv",
             title: "Download CV",
         });
+
+        const href = (e.currentTarget as HTMLAnchorElement).href;
+        const target = (e.currentTarget as HTMLAnchorElement).target;
+
+        setTimeout(() => {
+            if (target === "_blank") {
+                window.open(href, "_blank", "noopener,noreferrer");
+            } else {
+                window.location.href = href;
+            }
+        }, 150);
     }
 
 
@@ -87,7 +102,7 @@ export function Sidebar({
                             rel="noreferrer"
                             className="link font-semibold text-slate-900 decoration-slate-300
                                      dark:text-slate-200"
-                            onClick={trackDownloadCV}
+                            onClick={trackClickCV}
                         >
                             Voir le CV
                         </a>
