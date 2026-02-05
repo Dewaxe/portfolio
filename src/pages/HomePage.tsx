@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+﻿import { Link } from "react-router-dom";
 import type { Experience, Project } from "../data/profile";
 import { Card } from "../components/Card";
 import { Chip } from "../components/Chip";
@@ -215,13 +215,20 @@ export function HomePage({
                 </div>
 
                 {/* Lien vers la page des projets */}
-                <div className="mt-6 flex justify-end">
+                <div className="mt-6 flex justify-end pb-6 md:pb-0">
                     <Link
                         to="/projects"
-                        className="link group inline-flex items-center gap-2 text-sm font-medium
-                                text-slate-600 dark:text-slate-300"
+                        className={cn(
+                            "group inline-flex items-center gap-2 text-sm font-semibold",
+                            "text-[rgb(var(--fg-strong))] transition-colors",
+                            "hover:text-[rgb(var(--accent))]",
+                            "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/70",
+                            "mt-5"
+                        )}
                     >
-                        Voir tous les projets
+                        <span className="border-[rgba(var(--muted-2),0.45)] transition-colors group-hover:border-[rgb(var(--accent))]">
+                            Voir tous les projets
+                        </span>
                         <span className="transition-transform group-hover:translate-x-1">→</span>
                     </Link>
                 </div>

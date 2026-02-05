@@ -53,10 +53,10 @@ export const experiences: Experience[] = [
         summary:
             "Missions orientées automatisation et visualisation de data",
         bullets: [
-            "Mission : Automatisation de contrôle documentaire avec n8n\nAutomatisation d'extraction d’informations de fichiers PDF.\nGénération automatique d'un compte rendu mettant en évidence la conformité du document selon un cahier des charges.",
+            "Mission : Automatisation documentaire avec n8n\nConception d’un workflow automatisé intégrant des modèles d’IA (LLM)\nAnalyse et extraction d’informations de fichiers PDF volumineux.\nGénération d'un compte rendu mettant en évidence la conformité du document selon un cahier des charges complexe.",
             "Mission : Data Visualisation avec Power BI\nRéalisation d’un dashboard Power BI pour une exploitation agricole à partir de sa base de données.\nCréation de KPI facilitant le pilotage de l’activité et la prise de décision.",
         ],
-        tech: ["n8n", "Power BI", "DAX"],
+        tech: ["n8n", "IA", "LLM","Power BI", "DAX"],
     },
     {
         period: "2024",
@@ -124,7 +124,7 @@ export const projects: Project[] = [
             src: "screenshots/screenshot-portfolio-dark-light.png",
             alt: "Capture d'écran du portfolio (dark mode VS light mode)"
         },
-        year: "2026",
+        year: "2025",
     },
     {
         name: "Dashboard Power BI",
@@ -133,13 +133,13 @@ export const projects: Project[] = [
         tech: ["Power BI", "DAX"],
         links: [],
         featured: false,
-        year: "2026",
+        year: "2025",
     },
     {
-        name: "Automatisation du contrôle de conformité PDF",
+        name: "Automatisation documentaire avec n8n",
         description:
-            "Projet pour un client (Défense)\n\nExtraction d’informations d'un fichier PDF.\nVérification de la conformité du PDF avec une vingtaine de critères (police utilisée, chapitrage, cohérence légende / image, etc.)\nGénération automatique d'un compte rendu des éléments à modifier.",
-        tech: ["n8n"],
+            "Projet pour un client (Défense)\n\nConception d’un workflow automatisé sous n8n intégrant des modèles d’IA (LLM)\nAnalyse et extraction d’informations à partir de PDF volumineux\nContrôle automatisé de conformité à un cahier des charges (~20 critères : typographie, chapitrage, cohérence légende / illustration, etc.)\nGénération automatique d’un compte-rendu détaillé listant les non-conformités et actions correctives",
+        tech: ["n8n", "IA", "LLM"],
         links: [],
         featured: false,
         year: "2025",
