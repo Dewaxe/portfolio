@@ -17,6 +17,10 @@ export function Sidebar({
     socials,
     sectionIds,
     activeSectionId,
+    sectionLabels,
+    availabilityText,
+    cvLabel,
+    photoAlt,
 }: {
     name: string;
     title1: string;
@@ -25,18 +29,17 @@ export function Sidebar({
     socials: Social[];
     sectionIds: string[];
     activeSectionId: string;
+    sectionLabels: Record<string, string>;
+    availabilityText: string;
+    cvLabel: string;
+    photoAlt: string;
 }) {
     const labels = useMemo(() => {
         return sectionIds.map((id) => ({
             id,
-            label:
-                id === "about"
-                    ? "À propos"
-                    : id === "experience"
-                    ? "Expérience"
-                    : "Projets",
+            label: sectionLabels[id] ?? id,
         }));
-    }, [sectionIds]);
+    }, [sectionIds, sectionLabels]);
 
     function trackClickCV(e: React.MouseEvent<HTMLAnchorElement>) {
         if (!window.goatcounter?.count) return;
@@ -69,7 +72,7 @@ export function Sidebar({
                 <div className="inline-flex items-center gap-3">
                     <img
                         src="/profile.jpg"
-                        alt={`Photo de profil - ${name}`}
+                        alt={photoAlt.replace("{name}", name)}
                         className={cn(
                             "h-32 w-32 min-h-20 min-w-20",
                             "rounded-full object-cover",
@@ -93,7 +96,7 @@ export function Sidebar({
                 <div className="mt-5 max-w-sm space-y-3 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                     <p>{blurb}</p>
                     <p>
-                        En recherche d’un CDI.
+                        {availabilityText}
                         {" "}
                         <a
                             href="/cv-william-dempure.pdf"
@@ -103,7 +106,7 @@ export function Sidebar({
                                      dark:text-slate-200"
                             onClick={trackClickCV}
                         >
-                            Voir le CV
+                            {cvLabel}
                         </a>
                         .
                     </p>

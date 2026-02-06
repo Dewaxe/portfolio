@@ -5,9 +5,11 @@ import { MoonIcon, SunIcon } from "./Icons";
 export function ThemeSwitch({
     theme,
     onToggle,
+    ariaLabel = "Basculer le thème",
 }: {
     theme: Theme;
     onToggle: () => void;
+    ariaLabel?: string;
 }) {
     const isDark = theme === "dark";
 
@@ -20,7 +22,7 @@ export function ThemeSwitch({
             <button
                 type="button"
                 onClick={onToggle}
-                aria-label="Basculer le thème"
+                aria-label={ariaLabel}
                 className={cn(
                     "relative h-7 w-14 rounded-full transition outline-none",
                     "bg-slate-300/80 dark:bg-slate-600/60",

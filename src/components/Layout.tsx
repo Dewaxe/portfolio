@@ -2,9 +2,11 @@ import { useMemo } from "react";
 import { useActiveSection } from "../hooks/useActiveSection";
 import type { Social } from "../data/profile";
 import type { Theme } from "../theme/theme";
+import type { Locale } from "../i18n";
 import { Sidebar } from "./Sidebar";
 import { ThemeSwitch } from "./ThemeSwitch";
 import { MouseHaloBackground } from "./MouseHaloBackground";
+import { LocaleSwitch } from "./LocaleSwitch";
 
 
 export function Layout({
@@ -15,6 +17,14 @@ export function Layout({
     title2,
     blurb,
     socials,
+    sectionLabels,
+    availabilityText,
+    cvLabel,
+    photoAlt,
+    locale,
+    themeToggleLabel,
+    languageToggleLabel,
+    languageShortLabels,
     children,
 }: {
     theme: Theme;
@@ -24,6 +34,14 @@ export function Layout({
     title2: string;
     blurb: string;
     socials: Social[];
+    sectionLabels: Record<string, string>;
+    availabilityText: string;
+    cvLabel: string;
+    photoAlt: string;
+    locale: Locale;
+    themeToggleLabel: string;
+    languageToggleLabel: string;
+    languageShortLabels: { fr: string; en: string };
     children: React.ReactNode;
 }) {
     const sectionIds = useMemo(() => ["about", "experience", "projects"], []);
@@ -34,8 +52,13 @@ export function Layout({
             <MouseHaloBackground theme={theme} />
 
             {/* switch light / dark mode */}
-            <div className="absolute right-4 top-4 z-50">
-                <ThemeSwitch theme={theme} onToggle={onToggleTheme} />
+            <div className="absolute right-4 top-4 z-50 flex items-center gap-3">
+                <LocaleSwitch
+                    locale={locale}
+                    labels={languageShortLabels}
+                    ariaLabel={languageToggleLabel}
+                />
+                <ThemeSwitch theme={theme} onToggle={onToggleTheme} ariaLabel={themeToggleLabel} />
             </div>
 
             <div className="relative mx-auto max-w-6xl px-4">
@@ -48,6 +71,10 @@ export function Layout({
                         socials={socials}
                         sectionIds={sectionIds}
                         activeSectionId={active}
+                        sectionLabels={sectionLabels}
+                        availabilityText={availabilityText}
+                        cvLabel={cvLabel}
+                        photoAlt={photoAlt}
                     />
 
                     <main className="pb-6 lg:py-20">

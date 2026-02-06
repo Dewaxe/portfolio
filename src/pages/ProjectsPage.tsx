@@ -2,20 +2,30 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import type { Project } from "../data/profile";
 import type { Theme } from "../theme/theme";
+import type { Copy, Locale } from "../i18n";
 import { MouseHaloBackground } from "../components/MouseHaloBackground";
 import { ThemeSwitch } from "../components/ThemeSwitch";
 import { ExternalIcon } from "../components/Icons";
 import { Chip } from "../components/Chip";
 import { cn } from "../utils/cn";
+import { LocaleSwitch } from "../components/LocaleSwitch";
 
 export function ProjectsPage({
     projects,
     theme,
     onToggleTheme,
+    copy,
+    locale,
+    homePath,
+    name,
 }: {
     projects: Project[];
     theme: Theme;
     onToggleTheme: () => void;
+    copy: Copy;
+    locale: Locale;
+    homePath: string;
+    name: string;
 }) {
     useEffect(() => {
         window.scrollTo({ top: 0 });
@@ -36,24 +46,29 @@ export function ProjectsPage({
         <div className="relative min-h-screen bg-[rgb(var(--bg))] text-[rgb(var(--fg))]">
             <MouseHaloBackground theme={theme} />
 
-            <div className="absolute right-4 top-4 z-50">
-                <ThemeSwitch theme={theme} onToggle={onToggleTheme} />
+            <div className="absolute right-4 top-4 z-50 flex items-center gap-3">
+                <LocaleSwitch
+                    locale={locale}
+                    labels={copy.languageShortLabels}
+                    ariaLabel={copy.languageToggleLabel}
+                />
+                <ThemeSwitch theme={theme} onToggle={onToggleTheme} ariaLabel={copy.themeToggleLabel} />
             </div>
 
             <div className="mx-auto max-w-6xl px-4 py-10">
                 <div className="flex flex-col gap-4">
                     <Link
-                        to="/"
+                        to={homePath}
                         className="link group inline-flex items-center gap-2 text-sm font-medium text-[rgba(var(--muted),0.95)]"
                     >
                         <span className="transition-transform group-hover:-translate-x-1">
                             ←
                         </span>
-                            William Dempuré
+                            {name}
                     </Link>
 
                     <h1 className="text-3xl font-semibold tracking-tight text-[rgb(var(--fg-strong))]">
-                        Tous les projets
+                        {copy.projectsPage.heading}
                     </h1>
                 </div>
 
@@ -63,11 +78,15 @@ export function ProjectsPage({
                         <table className="w-full border-separate border-spacing-0">
                             <thead>
                                 <tr className="text-left text-xs font-semibold tracking-widest text-[rgba(var(--muted-2),0.95)]">
-                                    <th className={cn(thBase, "w-[90px]", "rounded-tl-2xl")}>ANNÉE</th>
-                                    <th className={thBase}>PROJET</th>
-                                    <th className={thBase}>DESCRIPTION</th>
-                                    <th className={thBase}>TECH</th>
-                                    <th className={cn(thBase, "text-right", "rounded-tr-2xl", "pr-7")}>LIENS</th>
+                                    <th className={cn(thBase, "w-[90px]", "rounded-tl-2xl")}>
+                                        {copy.projectsPage.table.year}
+                                    </th>
+                                    <th className={thBase}>{copy.projectsPage.table.project}</th>
+                                    <th className={thBase}>{copy.projectsPage.table.description}</th>
+                                    <th className={thBase}>{copy.projectsPage.table.tech}</th>
+                                    <th className={cn(thBase, "text-right", "rounded-tr-2xl", "pr-7")}>
+                                        {copy.projectsPage.table.links}
+                                    </th>
                                 </tr>
                             </thead>
 

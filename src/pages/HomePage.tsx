@@ -1,5 +1,6 @@
 ﻿import { Link } from "react-router-dom";
 import type { Experience, Project } from "../data/profile";
+import type { Copy } from "../i18n";
 import { Card } from "../components/Card";
 import { Chip } from "../components/Chip";
 import { SectionHeading } from "../components/SectionHeading";
@@ -9,39 +10,32 @@ import { cn } from "../utils/cn";
 export function HomePage({
     experiences,
     projects,
+    copy,
+    projectsPath,
 }: {
     experiences: Experience[];
     projects: Project[];
+    copy: Copy;
+    projectsPath: string;
 }) {
     return (
         <>
             {/* ABOUT */}
             <section id="about" className="scroll-mt-28 pt-10 lg:pt-0">
                 <div className="sticky top-0 z-30 -mx-4 px-4 py-3 bg-[rgba(var(--bg),0.92)] backdrop-blur-md md:static md:mx-0 md:px-0 md:py-0 md:bg-transparent md:backdrop-blur-0">
-                    <SectionHeading title="À PROPOS" />
+                    <SectionHeading title={copy.sections.about} />
                 </div>
                 <div className="mt-6 space-y-4 text-sm leading-relaxed text-[rgba(var(--muted),0.95)]">
-                    <p>
-                        Je suis développeur fullstack, et j’aime autant travailler sur l’interface que sur le backend :
-                        construire une feature, la brancher à une API, la stocker proprement, puis la déployer.
-                    </p>
-
-                    <p>
-                        J’ai eu l’occasion de bosser sur des sujets très concrets : outils internes, automatisation,
-                        dashboards, et aussi des projets perso auto-hébergés (stack React/TypeScript principalement).
-                    </p>
-
-                    <p>
-                        Je cherche aujourd’hui un poste en CDI où je peux continuer à progresser dans une équipe,
-                        livrer des fonctionnalités utiles, et être impliqué dans le produit au quotidien.
-                    </p>
+                    {copy.home.about.map((paragraph) => (
+                        <p key={paragraph}>{paragraph}</p>
+                    ))}
                 </div>
             </section>
 
             {/* EXPERIENCE */}
             <section id="experience" className="scroll-mt-10 mt-24">
                 <div className="sticky top-0 z-30 -mx-4 px-4 py-3 bg-[rgba(var(--bg),0.92)] backdrop-blur-md md:static md:mx-0 md:px-0 md:py-0 md:bg-transparent md:backdrop-blur-0">
-                    <SectionHeading title="EXPÉRIENCE" />
+                    <SectionHeading title={copy.sections.experience} />
                 </div>
 
                 <div className="mt-8 space-y-6">
@@ -131,7 +125,7 @@ export function HomePage({
             {/* PROJECTS */}
             <section id="projects" className="scroll-mt-10 mt-24">
                 <div className="sticky top-0 z-30 -mx-4 px-4 py-3 bg-[rgba(var(--bg),0.92)] backdrop-blur-md md:static md:mx-0 md:px-0 md:py-0 md:bg-transparent md:backdrop-blur-0">
-                    <SectionHeading title="PROJETS" />
+                    <SectionHeading title={copy.sections.projects} />
                 </div>
 
                 <div className="mt-8 space-y-6">
@@ -197,7 +191,10 @@ export function HomePage({
                                                 <div className="aspect-[4/3] bg-slate-50 dark:bg-slate-900">
                                                     <img
                                                         src={p.image.src}
-                                                        alt={p.image.alt ?? `Screenshot du projet ${p.name}`}
+                                                        alt={
+                                                            p.image.alt ??
+                                                            copy.home.projectImageFallback.replace("{name}", p.name)
+                                                        }
                                                         loading="lazy"
                                                         className="h-full w-full object-cover"
                                                     />
@@ -217,7 +214,7 @@ export function HomePage({
                 {/* Lien vers la page des projets */}
                 <div className="mt-6 flex justify-end pb-6 md:pb-0">
                     <Link
-                        to="/projects"
+                        to={projectsPath}
                         className={cn(
                             "group inline-flex items-center gap-2 text-sm font-semibold",
                             "text-[rgb(var(--fg-strong))] transition-colors",
@@ -227,7 +224,7 @@ export function HomePage({
                         )}
                     >
                         <span className="border-[rgba(var(--muted-2),0.45)] transition-colors group-hover:border-[rgb(var(--accent))]">
-                            Voir tous les projets
+                            {copy.home.viewAllProjects}
                         </span>
                         <span className="transition-transform group-hover:translate-x-1">→</span>
                     </Link>
