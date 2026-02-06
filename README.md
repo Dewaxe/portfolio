@@ -32,15 +32,17 @@ Ce projet a pour objectif de présenter mon profil de **développeur full-stack*
 
 ## 🗂️ Architecture du projet
 
-Le dépôt est une application front unique (Vite + React), organisée pour séparer clairement les composants UI, les pages et la logique transversale.
+Le dépôt est une application front unique (Vite + React), organisée pour séparer clairement l’UI, le contenu et la logique transversale (thème, i18n, hooks).
 
 ```txt
 .
 ├── public/                 # Assets statiques
 ├── src/
 │   ├── components/         # Composants UI réutilisables
-│   ├── data/               # Données de profil / contenu
+│   ├── content/            # Contenu i18n (fr/en) + types
+│   ├── data/               # Données structurées (projets, profil, etc.)
 │   ├── hooks/              # Hooks React personnalisés
+│   ├── i18n/               # Initialisation et helpers de traduction
 │   ├── pages/              # Pages principales
 │   ├── theme/              # Thème et styles liés au thème
 │   ├── utils/              # Helpers et utilitaires

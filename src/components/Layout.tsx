@@ -1,12 +1,11 @@
 import { useMemo } from "react";
 import { useActiveSection } from "../hooks/useActiveSection";
-import type { Social } from "../data/profile";
+import type { Social } from "../content/types";
 import type { Theme } from "../theme/theme";
-import type { Locale } from "../i18n";
+import { SECTION_IDS, type Locale, type SectionId } from "../i18n";
 import { Sidebar } from "./Sidebar";
-import { ThemeSwitch } from "./ThemeSwitch";
 import { MouseHaloBackground } from "./MouseHaloBackground";
-import { LocaleSwitch } from "./LocaleSwitch";
+import { HeaderControls } from "./HeaderControls";
 
 
 export function Layout({
@@ -34,7 +33,7 @@ export function Layout({
     title2: string;
     blurb: string;
     socials: Social[];
-    sectionLabels: Record<string, string>;
+    sectionLabels: Record<SectionId, string>;
     availabilityText: string;
     cvLabel: string;
     photoAlt: string;
@@ -44,7 +43,7 @@ export function Layout({
     languageShortLabels: { fr: string; en: string };
     children: React.ReactNode;
 }) {
-    const sectionIds = useMemo(() => ["about", "experience", "projects"], []);
+    const sectionIds = useMemo(() => SECTION_IDS, []);
     const active = useActiveSection(sectionIds);
 
     return (
@@ -52,14 +51,14 @@ export function Layout({
             <MouseHaloBackground theme={theme} />
 
             {/* switch light / dark mode */}
-            <div className="absolute right-4 top-4 z-50 flex items-center gap-3">
-                <LocaleSwitch
-                    locale={locale}
-                    labels={languageShortLabels}
-                    ariaLabel={languageToggleLabel}
-                />
-                <ThemeSwitch theme={theme} onToggle={onToggleTheme} ariaLabel={themeToggleLabel} />
-            </div>
+            <HeaderControls
+                theme={theme}
+                onToggleTheme={onToggleTheme}
+                locale={locale}
+                languageShortLabels={languageShortLabels}
+                languageToggleLabel={languageToggleLabel}
+                themeToggleLabel={themeToggleLabel}
+            />
 
             <div className="relative mx-auto max-w-6xl px-4">
                 <div className="grid gap-12 lg:grid-cols-[360px_1fr] lg:gap-16">

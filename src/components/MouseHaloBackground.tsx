@@ -14,13 +14,26 @@ export function MouseHaloBackground({ theme }: { theme: Theme }) {
         const update = () => setCoarse(mql.matches);
         update();
 
-        const anyMql = mql as any;
-        if (anyMql.addEventListener) anyMql.addEventListener("change", update);
-        else anyMql.addListener(update);
+        if ("addEventListener" in mql) {
+            mql.addEventListener("change", update);
+        } else {
+            const legacyMql = mql as MediaQueryList & {
+                addListener: (listener: (this: MediaQueryList, ev: MediaQueryListEvent) => void) => void;
+                removeListener: (listener: (this: MediaQueryList, ev: MediaQueryListEvent) => void) => void;
+            };
+            legacyMql.addListener(update);
+        }
 
         return () => {
-            if (anyMql.removeEventListener) anyMql.removeEventListener("change", update);
-            else anyMql.removeListener(update);
+            if ("removeEventListener" in mql) {
+                mql.removeEventListener("change", update);
+            } else {
+                const legacyMql = mql as MediaQueryList & {
+                    addListener: (listener: (this: MediaQueryList, ev: MediaQueryListEvent) => void) => void;
+                    removeListener: (listener: (this: MediaQueryList, ev: MediaQueryListEvent) => void) => void;
+                };
+                legacyMql.removeListener(update);
+            }
         };
     }, []);
 

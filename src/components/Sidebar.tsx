@@ -1,5 +1,6 @@
 import { useMemo } from "react";
-import type { Social } from "../data/profile";
+import type { Social } from "../content/types";
+import type { SectionId } from "../i18n";
 import { cn } from "../utils/cn";
 import { GithubIcon, LinkedinIcon, MailIcon } from "./Icons";
 
@@ -27,9 +28,9 @@ export function Sidebar({
     title2: string;
     blurb: string;
     socials: Social[];
-    sectionIds: string[];
-    activeSectionId: string;
-    sectionLabels: Record<string, string>;
+    sectionIds: readonly SectionId[];
+    activeSectionId: SectionId;
+    sectionLabels: Record<SectionId, string>;
     availabilityText: string;
     cvLabel: string;
     photoAlt: string;

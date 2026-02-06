@@ -4,8 +4,8 @@ import { Layout } from "./components/Layout";
 import { HomePage } from "./pages/HomePage";
 import { ProjectsPage } from "./pages/ProjectsPage";
 import { applyTheme, getInitialTheme, saveTheme } from "./theme/theme";
-import { experiences as experiencesFr, profile as profileFr, projects as projectsFr, socials as socialsFr } from "./data/profile";
-import { experiences as experiencesEn, profile as profileEn, projects as projectsEn, socials as socialsEn } from "./data/profile.en";
+import { content as contentFr } from "./content/fr";
+import { content as contentEn } from "./content/en";
 import { copy, getLocaleFromPathname, type Locale, withLocalePath } from "./i18n";
 
 export default function App() {
@@ -27,19 +27,7 @@ export default function App() {
     }, [locale, ui.meta.description, ui.meta.title]);
 
     const getData = (targetLocale: Locale) => {
-        return targetLocale === "en"
-            ? {
-                  profile: profileEn,
-                  socials: socialsEn,
-                  experiences: experiencesEn,
-                  projects: projectsEn,
-              }
-            : {
-                  profile: profileFr,
-                  socials: socialsFr,
-                  experiences: experiencesFr,
-                  projects: projectsFr,
-              };
+        return targetLocale === "en" ? contentEn : contentFr;
     };
 
     const renderHome = (targetLocale: Locale) => {
@@ -68,6 +56,7 @@ export default function App() {
                     experiences={data.experiences}
                     projects={data.projects}
                     copy={copyForLocale}
+                    about={data.about}
                     projectsPath={withLocalePath("/projects", targetLocale)}
                 />
             </Layout>

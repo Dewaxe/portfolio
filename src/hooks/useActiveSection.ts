@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 
-export function useActiveSection(ids: string[]): string {
-    const [active, setActive] = useState(ids[0] ?? "");
+export function useActiveSection<T extends string>(ids: readonly T[]): T {
+    const [active, setActive] = useState<T>(ids[0] ?? ("" as T));
     const observers = useRef<IntersectionObserver | null>(null);
     const ratiosRef = useRef<Map<string, number>>(new Map());
     const intersectingRef = useRef<Map<string, boolean>>(new Map());
@@ -27,18 +27,19 @@ export function useActiveSection(ids: string[]): string {
                     intersectingRef.current.set(id, e.isIntersecting);
                 }
 
-            let bestId = active;
-            let bestRatio = -1;
+                let bestId = active;
+                let bestRatio = -1;
 
-            for (const id of ids) {
-                const isIn = intersectingRef.current.get(id) ?? false;
-                const r = ratiosRef.current.get(id) ?? 0;
-                if (isIn && r > bestRatio) {
-                    bestRatio = r;
-                    bestId = id;
+                for (const id of ids) {
+                    const isIn = intersectingRef.current.get(id) ?? false;
+                    const r = ratiosRef.current.get(id) ?? 0;
+                    if (isIn && r > bestRatio) {
+                        bestRatio = r;
+                        bestId = id;
+                    }
                 }
-            }
-        if (bestId && bestId !== active) setActive(bestId);
+
+                if (bestId && bestId !== active) setActive(bestId);
             },
             {
                 root: null,

@@ -1,14 +1,13 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import type { Project } from "../data/profile";
+import type { Project } from "../content/types";
 import type { Theme } from "../theme/theme";
 import type { Copy, Locale } from "../i18n";
 import { MouseHaloBackground } from "../components/MouseHaloBackground";
-import { ThemeSwitch } from "../components/ThemeSwitch";
 import { ExternalIcon } from "../components/Icons";
 import { Chip } from "../components/Chip";
 import { cn } from "../utils/cn";
-import { LocaleSwitch } from "../components/LocaleSwitch";
+import { HeaderControls } from "../components/HeaderControls";
 
 export function ProjectsPage({
     projects,
@@ -31,8 +30,6 @@ export function ProjectsPage({
         window.scrollTo({ top: 0 });
     }, []);
 
-    const sorted = [...projects];
-
     const thBase = cn(
         "sticky top-0 z-30 px-5 py-4",
         "border-b border-slate-200/70 dark:border-slate-700/70",
@@ -46,14 +43,14 @@ export function ProjectsPage({
         <div className="relative min-h-screen bg-[rgb(var(--bg))] text-[rgb(var(--fg))]">
             <MouseHaloBackground theme={theme} />
 
-            <div className="absolute right-4 top-4 z-50 flex items-center gap-3">
-                <LocaleSwitch
-                    locale={locale}
-                    labels={copy.languageShortLabels}
-                    ariaLabel={copy.languageToggleLabel}
-                />
-                <ThemeSwitch theme={theme} onToggle={onToggleTheme} ariaLabel={copy.themeToggleLabel} />
-            </div>
+            <HeaderControls
+                theme={theme}
+                onToggleTheme={onToggleTheme}
+                locale={locale}
+                languageShortLabels={copy.languageShortLabels}
+                languageToggleLabel={copy.languageToggleLabel}
+                themeToggleLabel={copy.themeToggleLabel}
+            />
 
             <div className="mx-auto max-w-6xl px-4 py-10">
                 <div className="flex flex-col gap-4">
@@ -91,7 +88,7 @@ export function ProjectsPage({
                             </thead>
 
                             <tbody>
-                                {sorted.map((p, i) => (
+                                {projects.map((p, i) => (
                                     <React.Fragment key={p.name}>
                                         <tr className="group">
                                             <td className="px-5 py-5 align-top text-xs font-semibold text-[rgba(var(--muted-2),0.95)]">
@@ -135,7 +132,7 @@ export function ProjectsPage({
                                             </td>
                                         </tr>
 
-                                        {i !== sorted.length - 1 && (
+                                        {i !== projects.length - 1 && (
                                             <tr aria-hidden="true">
                                                 <td colSpan={5} className="px-5">
                                                     <div className="h-px w-full bg-slate-200/70 dark:bg-slate-700/70" />
@@ -152,7 +149,7 @@ export function ProjectsPage({
                 {/* Mobile list */}
                 <div className="mt-10 md:hidden">
                     <div className="rounded-2xl ring-1 ring-slate-200 dark:ring-slate-700">
-                        {sorted.map((p, i) => (
+                        {projects.map((p, i) => (
                             <div key={p.name}>
                                 <div className="p-5">
                                     <div className="flex items-start justify-between gap-4">
@@ -193,7 +190,7 @@ export function ProjectsPage({
                                     )}
                                 </div>
 
-                                {i !== sorted.length - 1 && (
+                                {i !== projects.length - 1 && (
                                     <div className="h-px w-full bg-slate-200/70 dark:bg-slate-700/70" />
                                 )}
                             </div>

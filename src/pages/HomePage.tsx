@@ -1,5 +1,5 @@
 ﻿import { Link } from "react-router-dom";
-import type { Experience, Project } from "../data/profile";
+import type { Experience, Project } from "../content/types";
 import type { Copy } from "../i18n";
 import { Card } from "../components/Card";
 import { Chip } from "../components/Chip";
@@ -11,11 +11,13 @@ export function HomePage({
     experiences,
     projects,
     copy,
+    about,
     projectsPath,
 }: {
     experiences: Experience[];
     projects: Project[];
     copy: Copy;
+    about: string[];
     projectsPath: string;
 }) {
     return (
@@ -26,7 +28,7 @@ export function HomePage({
                     <SectionHeading title={copy.sections.about} />
                 </div>
                 <div className="mt-6 space-y-4 text-sm leading-relaxed text-[rgba(var(--muted),0.95)]">
-                    {copy.home.about.map((paragraph) => (
+                    {about.map((paragraph) => (
                         <p key={paragraph}>{paragraph}</p>
                     ))}
                 </div>
