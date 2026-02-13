@@ -29,6 +29,7 @@ export type ProjectImage = {
 export type Project = {
     name: string;
     description: string;
+    details?: string;
     tech: string[];
     links: ProjectLink[];
     featured?: boolean;

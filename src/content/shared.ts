@@ -31,7 +31,7 @@ export const experiencesBase: Record<ExperienceId, ExperienceBase> = {
         tech: ["React", "TypeScript", "Material UI", "Python", "FastAPI", "SQL", "Docker", "OpenShift", "SQLAlchemy"],
     },
     mcdonalds: {
-        companyUrl: "https://www.mcdonalds.fr/",
+        companyUrl: "https://www.mcdonalds-recrute.fr/nos-metiers/etre-manager",
         tech: [],
     },
     msc: {
@@ -55,7 +55,7 @@ export const projectsBase: Record<ProjectId, ProjectBase> = {
         year: "2026",
     },
     portfolio: {
-        tech: ["React", "TypeScript", "Javascript", "Vite", "Tailwind CSS", "Nginx", "Linux", "Raspberry Pi", "Figma"],
+        tech: ["React", "TypeScript", "Javascript", "Vite", "Tailwind CSS", "Nginx", "Linux", "Raspberry Pi"],
         links: [{ label: "GitHub", href: "https://github.com/Dewaxe/portfolio" }],
         featured: true,
         image: {
@@ -85,7 +85,11 @@ export const projectsBase: Record<ProjectId, ProjectBase> = {
     retroPlanning: {
         tech: ["React", "TypeScript", "Material UI", "Figma", "Docker"],
         links: [],
-        featured: false,
+        featured: true,
+        image: {
+            src: "screenshots/screenshot-retroplanning.png",
+            alt: "Screenshot of the retroplanning",
+        },
         year: "2025",
     },
     weatherApp: {

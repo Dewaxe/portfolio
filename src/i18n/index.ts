@@ -30,6 +30,8 @@ export type Copy = {
             tech: string;
             links: string;
         };
+        seeMore: string;
+        seeLess: string;
     };
     themeToggleLabel: string;
     languageToggleLabel: string;
@@ -74,6 +76,8 @@ export const copy: Record<Locale, Copy> = {
                 tech: "TECH",
                 links: "LIENS",
             },
+            seeMore: "Voir plus",
+            seeLess: "Voir moins",
         },
         themeToggleLabel: "Basculer le thème",
         languageToggleLabel: "Changer de langue",
@@ -116,6 +120,8 @@ export const copy: Record<Locale, Copy> = {
                 tech: "TECH",
                 links: "LINKS",
             },
+            seeMore: "See more",
+            seeLess: "See less",
         },
         themeToggleLabel: "Toggle theme",
         languageToggleLabel: "Change language",

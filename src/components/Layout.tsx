@@ -50,7 +50,6 @@ export function Layout({
         <div className="relative min-h-screen bg-[rgb(var(--bg))] text-[rgb(var(--fg))]">
             <MouseHaloBackground theme={theme} />
 
-            {/* switch light / dark mode */}
             <HeaderControls
                 theme={theme}
                 onToggleTheme={onToggleTheme}

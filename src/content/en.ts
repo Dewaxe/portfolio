@@ -12,19 +12,19 @@ export const content: Content = {
     },
     socials,
     about: [
-        "I am a fullstack developer who enjoys both the interface and the backend: building a feature, connecting it to an API, storing data cleanly, then deploying it.",
-        "I have worked on very practical topics: internal tools, automation, dashboards, and also self-hosted personal projects (mostly React/TypeScript).",
-        "I am currently looking for a full-time role where I can keep growing within a team, ship useful features, and be involved in the product day to day.",
+        "I am a fullstack developer, and I enjoy working on both the interface and the backend: building a feature, connecting it to an API, storing it cleanly, then deploying it.",
+        "I have worked on very practical topics: internal tools, automation, dashboards, and also self-hosted personal projects (mainly React/TypeScript).",
+        "I am currently looking for a full-time role where I can keep growing within a team, deliver useful features, and be involved in the product day to day.",
     ],
     experiences: [
         {
             ...experiencesBase.freelance,
-            period: "2025 — Present",
+            period: "2025 - Present",
             role: "Fullstack Developer",
             company: "Self-employed",
-            summary: "Automation and data visualization projects",
+            summary: "Automation and data visualization missions",
             bullets: [
-                "Project: Document automation with n8n\nDesigned an automated workflow integrating AI models (LLMs)\nAnalysis and extraction of information from large PDF files.\nGenerated a report highlighting document compliance with a complex specification.",
+                "Project: Document automation with n8n\nDesigned an automated workflow integrating AI models (LLMs)\nAnalysis and extraction of information from large PDF files.\Generated a report highlithing document compliance with a complex specification.\nEnd-to-end ownership of the mission: scoping the need, defining the roadmap, and meeting deadlines",
                 "Project: Data visualization with Power BI\nBuilt a Power BI dashboard for a farm using its database.\nCreated KPIs to support activity monitoring and decision-making.",
             ],
         },
@@ -41,14 +41,15 @@ export const content: Content = {
         },
         {
             ...experiencesBase.mcdonalds,
-            period: "2017 — 2020",
+            period: "2017 - 2020",
             role: "Team Leader",
             company: "McDonald's",
             summary:
-                "Progression from crew member to trainer, then team leader, opening manager and manager-in-training",
+                "Progression from crew member to trainer, then team leader (opening/closing lead) and manager-in-training period",
             bullets: [
-                "Trained new crew members using a personalized approach",
-                "Responsible for opening and closing the restaurant",
+                "Trained and supported new crew members with a teaching approach adapted to each person's profile and abilities.",
+                "Coordinated the team on the floor, especially during rush periods, while maintaining a high and structured pace.",
+                "Managed priorities, stock, and stress in a high-pressure operational environment, with clear and consistent communication.",
             ],
         },
         {
@@ -69,7 +70,9 @@ export const content: Content = {
             ...projectsBase.ecoBuddy,
             name: "Eco-buddy (in development)",
             description:
-                "Personal project\n\nFull-stack web app to manage and analyze expenses, subscriptions, and income.\nIncludes business rules: recurring income, automatic expense generation from subscriptions, category budgeting, monthly analyses, etc.\nSecure authentication.\nSelf-hosted deployment.",
+                "Personal project\n\nFull-stack web app to manage and analyze expenses, subscriptions, and income.",
+            details:
+                "__**Complex business rules**__ :\n* Recurring income\n* Automatic expense generation from subscriptions\n* Budget rules by expense category\n* Monthly analyses\n* Authentication system\n**__Project story__** :\nOriginally conceived as a simple expenses and subscriptions tracking app to **build my skills**, I quickly wanted to turn it into a real **complete and usable application**.\nTo make the app easier to use, I had to set up:\n* a **PWA**: for easy access without going through app stores\n* a **bank connection**: to automatically fetch statements and avoid tedious manual entry.\n**__Hosting and deployment__** :\nInitially hosted on **Vercel** for the front end and **Render** for the back end, I soon bought a **raspberry pi** to host the entire application locally and avoid latency from free external hosting.\nI first deployed via **DuckDNS**, before setting up **my own domain name** and a fully controlled deployment.",
             image: projectsBase.ecoBuddy.image
                 ? { ...projectsBase.ecoBuddy.image, alt: "Screenshot of the Eco-buddy app (dashboard)" }
                 : undefined,
@@ -78,7 +81,9 @@ export const content: Content = {
             ...projectsBase.portfolio,
             name: "Portfolio",
             description:
-                "Personal project\n\nPortfolio showcasing projects, experience, social links, and a downloadable resume.\nDark / light theme management.\nSelf-hosted deployment.",
+                "Personal project\n\nPortfolio presenting projects, experience, social links, and a viewable resume.",
+            details:
+                "__**Additional features**__ :\n* Dark / light theme management\n* FR / EN language management\n__**Hosting and deployment**__ :\nI hosted my portfolio on a **raspberry pi** and set up my own domain name to deploy this portfolio and other applications / sites via various subdomains.",
             image: projectsBase.portfolio.image
                 ? { ...projectsBase.portfolio.image, alt: "Screenshot of the portfolio (dark mode vs light mode)" }
                 : undefined,
@@ -93,19 +98,25 @@ export const content: Content = {
             ...projectsBase.docAutomation,
             name: "Document automation with n8n",
             description:
-                "Client project (Defense)\n\nDesigned an automated workflow in n8n integrating AI models (LLMs)\nAnalysis and extraction of information from large PDFs\nAutomated compliance checks against a specification (~20 criteria: typography, structure, legend/illustration consistency, etc.)\nAutomatic generation of a detailed report listing non-compliances and corrective actions",
+                "Client project (Defense)\n\nDesigned an automated workflow in n8n for document compliance checks.",
+            details:
+                "**__Workflow steps__** :\n* Upload the PDF to be checked (several hundred pages)\n* Check PDF compliance against 18 criteria defined in the specification\n* Generate a downloadable report listing non-compliances and corrective actions\n**__Compliance check handling__** :\n* Use utilities for simple criteria (pdftotext, pdffonts, ...)\n* Use LLMs for more complex criteria\n**__Examples of simple criteria checked__** :\n* Font used\n* Page numbering\n* Spelling or conjugation checks\n**__Examples of complex criteria checked__** :\n* Text / illustration consistency\n* Verification of the use of compliant pictograms",
         },
         {
             ...projectsBase.podcastApp,
             name: "Podcast application",
             description:
-                "Developed during my internship at Safran\n\nDatabase managed with DBeaver. Backend with FastAPI (Python framework). Used the SQLAlchemy ORM and Pydantic library. Frontend in React/TypeScript with Material UI. Authentication with the company SSO. Implemented a PWA to make the app accessible on mobile.",
+                "Developed during my internship at Safran\n\nApplication allowing Safran employees to publish and listen to audio podcasts",
+            details:
+                "**__Podcast objectives__** :\n* Help employees follow company news\n* Listen to interviews\n* Follow work advice\n* Stay up to date with technology watch\n**__Technologies used__** :\n* Database management with **DBeaver**.\n* Backend with **FastAPI** (a **Python** framework). Use of the **SQLAlchemy** ORM and the **Pydantic** library.\n* Frontend in **React Typescript** with **Material UI**.\n* Authentication with the company's **SSO**.\n* Implemented a **PWA** to make the app accessible on smartphones.",
         },
         {
             ...projectsBase.retroPlanning,
             name: "Retro-planning application",
             description:
-                "Developed during my internship at Safran\n\nFront-end only in React/TypeScript with Material UI. Export to PDF, Excel or CSV. Data entry manually or from a CSV. Dockerized the app and deployed internally with OpenShift.",
+                "Developed during my internship at Safran\n\nApplication allowing Safran HR teams to generate retro-planning schedules for experienced employees (simulation of different possible calendars before retirement)",
+            details:
+                "**__How the application is used__** :\n* The HR manager fills out a form with information about the experienced employee for whom they want to generate a retro-planning schedule.\n* They choose the type(s) of retro-planning to generate\n* Once the simulation is complete, HR can export the retro-planning summary PDF, the Excel file for the detailed calendar, or save a CSV of the information entered to run a later simulation.\n**__What is a retro-planning?__**\nIn this context, a retro-planning is a calendar that shows the working rhythm of an experienced employee before retirement. There are several options:\n* Standard Part-time Aid (TPA): part-time with salary top-up\n* TPA + progressive retirement: standard TPA + 12 months of progressive retirement\n* TPA 100-0: no reduction in working time, but salary difference converted into accumulable days for early retirement\n**__Technologies used__** :\n* Front-end only application in **React Typescript** with **Material UI**.\n* **Docker** containerization and internal deployment on a custom URL with **OpenShift**.\n**__Challenges encountered__** :\n* Managing public holidays and company closures\n* Responding to divergent client requirements (HR teams)\n* Building a polished and responsive timeline\n* Managing part-time work with repeated cycles of weeks containing different working days\n* Keeping the application simple and intuitive despite adding many features during development",
         },
         {
             ...projectsBase.weatherApp,
