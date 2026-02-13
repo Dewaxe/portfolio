@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+﻿import { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { HomePage } from "./pages/HomePage";
@@ -84,20 +84,22 @@ export default function App() {
         <Routes>
             <Route
                 path="/"
-                element={renderHome("fr")}
-            />
-            <Route
-                path="/projects"
-                element={renderProjects("fr")}
-            />
-            <Route
-                path="/en"
                 element={renderHome("en")}
             />
             <Route
-                path="/en/projects"
+                path="/projects"
                 element={renderProjects("en")}
+            />
+            <Route
+                path="/fr"
+                element={renderHome("fr")}
+            />
+            <Route
+                path="/fr/projects"
+                element={renderProjects("fr")}
             />
         </Routes>
     );
 }
+
+

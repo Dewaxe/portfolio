@@ -1,9 +1,9 @@
-export type Locale = "fr" | "en";
+﻿export type Locale = "fr" | "en";
 
 export const SECTION_IDS = ["about", "experience", "projects"] as const;
 export type SectionId = (typeof SECTION_IDS)[number];
 
-export const defaultLocale: Locale = "fr";
+export const defaultLocale: Locale = "en";
 
 export type Copy = {
     meta: {
@@ -133,21 +133,22 @@ export const copy: Record<Locale, Copy> = {
 };
 
 export function getLocaleFromPathname(pathname: string): Locale {
-    return pathname === "/en" || pathname.startsWith("/en/") ? "en" : "fr";
+    return pathname === "/fr" || pathname.startsWith("/fr/") ? "fr" : "en";
 }
 
 export function stripLocale(pathname: string): string {
-    if (pathname === "/en") return "/";
-    if (pathname.startsWith("/en/")) return pathname.slice(3);
+    if (pathname === "/fr") return "/";
+    if (pathname.startsWith("/fr/")) return pathname.slice(3);
     return pathname;
 }
 
 export function withLocalePath(path: string, locale: Locale): string {
     const normalized = path.startsWith("/") ? path : `/${path}`;
-    if (locale === "en") return normalized === "/" ? "/en" : `/en${normalized}`;
+    if (locale === "fr") return normalized === "/" ? "/fr" : `/fr${normalized}`;
     return normalized;
 }
 
 export function toLocalePathname(pathname: string, locale: Locale): string {
     return withLocalePath(stripLocale(pathname), locale);
 }
+
