@@ -5,6 +5,7 @@ import { Card } from "../components/Card";
 import { Chip } from "../components/Chip";
 import { SectionHeading } from "../components/SectionHeading";
 import { ExternalIcon } from "../components/Icons";
+import { ProjectDetails } from "../components/ProjectDetails";
 import { cn } from "../utils/cn";
 
 export function HomePage({
@@ -167,9 +168,13 @@ export function HomePage({
                                             </div>
                                         </div>
 
-                                        <p className="whitespace-pre-line mt-2 text-sm text-[rgba(var(--muted),0.95)]">
-                                            {p.description}
-                                        </p>
+                                        <ProjectDetails
+                                            description={p.description}
+                                            details={p.details}
+                                            seeMoreLabel={copy.projectsPage.seeMore}
+                                            seeLessLabel={copy.projectsPage.seeLess}
+                                            descriptionClassName="mt-2 leading-normal"
+                                        />
 
                                         <div className="mt-4 flex flex-wrap gap-2">
                                             {p.tech.map((t) => (
