@@ -21,6 +21,7 @@ export function Sidebar({
     sectionLabels,
     availabilityText,
     cvLabel,
+    cvHref,
     photoAlt,
 }: {
     name: string;
@@ -33,6 +34,7 @@ export function Sidebar({
     sectionLabels: Record<SectionId, string>;
     availabilityText: string;
     cvLabel: string;
+    cvHref: string;
     photoAlt: string;
 }) {
     const labels = useMemo(() => {
@@ -100,7 +102,7 @@ export function Sidebar({
                         {availabilityText}
                         {" "}
                         <a
-                            href="/cv-william-dempure.pdf"
+                            href={cvHref}
                             target="_blank"
                             rel="noreferrer"
                             className="link font-semibold text-slate-900 decoration-slate-300

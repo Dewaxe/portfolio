@@ -19,6 +19,7 @@ export function Layout({
     sectionLabels,
     availabilityText,
     cvLabel,
+    cvHref,
     photoAlt,
     locale,
     themeToggleLabel,
@@ -36,6 +37,7 @@ export function Layout({
     sectionLabels: Record<SectionId, string>;
     availabilityText: string;
     cvLabel: string;
+    cvHref: string;
     photoAlt: string;
     locale: Locale;
     themeToggleLabel: string;
@@ -72,6 +74,7 @@ export function Layout({
                         sectionLabels={sectionLabels}
                         availabilityText={availabilityText}
                         cvLabel={cvLabel}
+                        cvHref={cvHref}
                         photoAlt={photoAlt}
                     />
 

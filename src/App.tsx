@@ -46,6 +46,11 @@ export default function App() {
                 sectionLabels={copyForLocale.nav}
                 availabilityText={copyForLocale.sidebar.availability}
                 cvLabel={copyForLocale.sidebar.cvLabel}
+                cvHref={
+                    targetLocale === "en"
+                        ? "/resume-william-dempure.pdf"
+                        : "/cv-william-dempure.pdf"
+                }
                 photoAlt={copyForLocale.sidebar.photoAlt}
                 locale={targetLocale}
                 themeToggleLabel={copyForLocale.themeToggleLabel}
