@@ -24,7 +24,7 @@ export const content: Content = {
             company: "Self-employed",
             summary: "Automation and data visualization missions",
             bullets: [
-                "Project: Document automation with n8n\nDesigned an automated workflow integrating AI models (LLMs)\nAnalysis and extraction of information from large PDF files.\Generated a report highlithing document compliance with a complex specification.\nEnd-to-end ownership of the mission: scoping the need, defining the roadmap, and meeting deadlines",
+                "Project: Document automation with n8n\nDesigned an automated workflow integrating AI models (LLMs)\nAnalysis and extraction of information from large PDF files.\nGenerated a report highlithing document compliance with a complex specification.\nEnd-to-end ownership of the mission: scoping the need, defining the roadmap, and meeting deadlines",
                 "Project: Data visualization with Power BI\nBuilt a Power BI dashboard for a farm using its database.\nCreated KPIs to support activity monitoring and decision-making.",
             ],
         },
