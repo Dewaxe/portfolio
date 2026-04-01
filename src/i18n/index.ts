@@ -44,7 +44,7 @@ export type Copy = {
 export const copy: Record<Locale, Copy> = {
     fr: {
         meta: {
-            title: "William Dempuré",
+            title: "William Dempuré · Portfolio",
             description:
                 "William Dempuré, développeur fullstack spécialisé en React, TypeScript et Python. Découvrez mon portfolio, mes projets et mon parcours.",
         },
@@ -88,7 +88,7 @@ export const copy: Record<Locale, Copy> = {
     },
     en: {
         meta: {
-            title: "William Dempuré",
+            title: "William Dempuré · Portfolio",
             description:
                 "William Dempuré, fullstack developer specialized in React, TypeScript, and Python. Explore my portfolio, projects, and experience.",
         },
